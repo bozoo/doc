@@ -3,12 +3,12 @@ RSYSLOG
 
 Remote rsyslogd
 
- - for redhat5
+for redhat5
 
     # /etc/sysconfig/rsyslog :
      SYSLOGD_OPTIONS="-m 0 -r514 -x"
 
- - for redhat6
+for redhat6
 
     # /etc/rsyslog.conf :
     # Provides UDP syslog reception

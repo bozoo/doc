@@ -1,19 +1,19 @@
 GIT
 ===
 
-- Clone a git repo
+Clone a git repo
 
     git clone https://github.com/$userName/$repoGit
 
-- Clone a git repo in $repoDir
+Clone a git repo in $repoDir
 
     git clone https://github.com/$userName/$repoGit $repoDir
 
-- Save current working git
+Save current working git
 
     git stash
 
-- Configure proxy for git
+Configure proxy for git
 
     git config [--global] http.proxy http://user:pass@proxyhost:proxyport
 
@@ -26,15 +26,15 @@ Backup $pathToFileToRemove then:
     git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch $pathToFileToRemove' --prune-empty --tag-name-filter cat -- --all
     git push origin master --force
 
- Resolve a merge conflict
+Resolve a merge conflict
 
- - Keep remote file :
+Keep remote file :
 
     rm $localConflictFile
     git checkout --theirs $remoteConflictFile
     fit commit -a
 
- - Keep local file :
+Keep local file :
 
     git rm $remoteConflictFile
     git add $localConflitFile
@@ -88,7 +88,7 @@ Git-achievement
 Install Git on CentOS 5
 -----------------------
 
- - Git Server :
+Git Server :
 
     yum install git git-daemon
     mkdir -p ${repoGit}.git
@@ -123,7 +123,7 @@ Install Git on CentOS 5
 
     service httpd restart
 
- - Cygwin client :
+Cygwin client :
 
     cd d:
     mkdir -p git/sysadmin

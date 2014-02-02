@@ -1,19 +1,19 @@
 MYSQL
 =====
 
- - Secure MySQL after install
+Secure MySQL after install
 
     /usr/bin/mysql_secure_installation
 
- - Set root password
+Set root password
 
     mysqladmin -u root password YOURNEWPASSWORD
 
- - Ping mysql
+Ping mysql
 
     mysqladmin -u root -p ping
 
- - Check version
+Check version
 
     mysqladmin -u root -p version
 
@@ -25,7 +25,7 @@ MYSQL
     Threads: 2  Questions: 36002  Slow queries: 0  Opens: 15
     Flush tables: 1  Open tables: 8  Queries per second avg: 0.059
 
- - Check status
+Check status
 
     mysqladmin -u root -p status
 
@@ -57,65 +57,65 @@ or
     | Com_alter_tablespace                     | 0           |
     +------------------------------------------+-------------+
 
- - Show MySQL variables
+Show MySQL variables
 
     mysqladmin  -u root -p variables
 
- - Show running process
+Show running process
 
     mysqladmin -u root -p processlist
 
- - Kill running process
+Kill running process
 
     mysqladmin -u root -p kill $idProcess
 
- - Create / Drop database
+Create / Drop database
 
     mysqladmin -u root -p create $databaseName
     mysqladmin -u root -p drop $databaseName
 
- - Shutdown MySQL
+Shutdown MySQL
 
     mysqladmin -u root -p shutdown
 
- - Stop / Start replication
+Stop / Start replication
 
     mysqladmin  -u root -p start-slave
     mysqladmin  -u root -p stop-slave
 
- - Set MySQL logs to debug
+Set MySQL logs to debug
 
     mysqladmin  -u root -p debug
 
- - Show databases
+Show databases
 
     > show databases;
 
- - Change database
+Change database
 
     > use myDatabase;
 
- - Show tables
+Show tables
 
     > show tables;
 
- - Show columns of a table
+Show columns of a table
 
     > desc myTable;
 
- - Show date
+Show date
 
     > select now() from dual;
 
- - Show plan of a query
+Show plan of a query
 
     > explain myQuery; # myQuery = "select * from whatyouwhant or any other query"
 
- - Show index for at table
+Show index for at table
 
     > show index from myTable;
 
- - Save result of a query into a file
+Save result of a query into a file
 
     > select * into outfile '/tmp/myfile.txt' from myTable;
 
@@ -123,12 +123,12 @@ or
 
     > select * into outfile '/tmp/myfile.txt' fields terminated by ',' from myTable;
 
- - Show users:
+Show users:
 
     > use mysql
     > select host, user, password from user;
 
- - Change password for non-root user
+Change password for non-root user
 
     > use mysql
     > update user set password=PASSWORD("MyPassword")  where User='MyUser';
@@ -136,7 +136,7 @@ or
     > flush privileges;
     > exit
 
- - Change root password
+Change root password
 
     # Stop MySQL and start it in safe mode
     /usr/bin/safe_mysqld --skip-grant-tables&
@@ -147,11 +147,11 @@ host='localhost';
     > flush privileges;
     # Restart MySQL
 
- - Show MySQL engine for a database
+Show MySQL engine for a database
 
     > select table_name,engine from information_schema.tables where table_schema='DB_NAME';
 
- - Show DB Size
+Show DB Size
 
     > SELECT table_schema "Data Base Name",
     sum( data_length + index_length ) / 1024 /
@@ -160,7 +160,7 @@ host='localhost';
     FROM information_schema.TABLES
     GROUP BY table_schema ;
 
- - Show tables size
+Show tables size
 
     > SELECT CONCAT(table_schema, '.', table_name),
     CONCAT(ROUND(table_rows / 1000000, 2), 'M')                                    rows,
@@ -175,26 +175,26 @@ host='localhost';
 Repair MySQL
 ------------
 
- - Check MyISAM tables
+Check MyISAM tables
 
     > CHECK TABLE;
 
- - Repair MyISAM tables
+Repair MyISAM tables
 
     > REPAIR TABLE;
 
- - Optimize MyISAM table (cold operation, need to have twice space disk of the table on fs)
+Optimize MyISAM table (cold operation, need to have twice space disk of the table on fs)
 
     > OPTIMIZE TABLE;
 
- - Analyse MyISAM table
+Analyse MyISAM table
 
     > ANALYZE TABLE;
 
 Backup / Restore
 ----------------
 
- - Backup MySQL DB
+Backup MySQL DB
 
     mysqldump -u [username] –p[password] [opts] [database_name] [tables_names] > [dump_file.sql]
 
@@ -204,11 +204,11 @@ Backup / Restore
     --no-data : backup only db structure without data
     --no-create-info : backup data only
 
- - Restore MySQL DB on an empty DB
+Restore MySQL DB on an empty DB
 
     mysql -u [username] –p[password] [database_name] < [dump_file.sql]
 
- - Restore MySQL DB on a existing DB
+Restore MySQL DB on a existing DB
 
     mysqlimport -u [username] –p[password] [database_name] < [dump_file.sql]
 
@@ -217,7 +217,7 @@ Replication
 
 ### On Master
 
- - Edit my.cnf
+Edit my.cnf
 
     server-id = 1
     binlog-do-db=my_db
@@ -228,7 +228,7 @@ Replication
     relay-log-info-file = /var/lib/mysql/mysql-relay-log.info
     log-bin = /var/lib/mysql/mysql-bin
 
- - Set privileges for replication
+Set privileges for replication
 
     \> GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'your_password';
     \> FLUSH PRIVILEGES;
@@ -242,7 +242,7 @@ Replication
 
 ### On Slave
 
- - Edit my.cnf
+Edit my.cnf
 
     server-id = 2
     master-host=192.168.1.1
@@ -257,9 +257,9 @@ Replication
     relay-log-info-file = /var/lib/mysql/mysql-relay-log.info
     log-bin = /var/lib/mysql/mysql-bin
 
- - Import dump of the master db
+Import dump of the master db
 
- - Set slave replication
+Set slave replication
 
     \> slave stop;
     \> CHANGE MASTER TO MASTER_HOST='192.168.1.1', MASTER_USER='slave_user', MASTER_PASSWORD='yourpassword', MASTER_LOG_FILE='mysql-bin.000003', MASTER_LOG_POS=11128001;
