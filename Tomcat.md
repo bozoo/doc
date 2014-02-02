@@ -1,6 +1,23 @@
 TOMCAT
 ======
 
+Configuration Tomcat 6 multi-instance on RHEL
+---------------------------------------------
+
+server.xml:
+
+Change shutdown port shutdown (default: 8006)
+Comment AJP port
+
+/etc/init.d/tomcat6-${instance}:
+
+Replace `NAME="$(basename $0)"` by `NAME=”tomcat”`
+
+tomcat6.conf:
+
+Replace `TOMCAT_USER` by `${instance}`
+
+
 Securing Tomcat 7
 -----------------
 

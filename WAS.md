@@ -18,3 +18,15 @@ Java System Dump generation on AIX
     ${WAS_HOME}/java/jre/bin/jextract /path_of_binary_coredump /path_of_the_output -v
 
 [How to process an IBM SDK core dump with Jextract (AIX, Linux, Windows)](http://www-01.ibm.com/support/docview.wss?uid=swg21577379)
+
+WAS 6 Uninstall
+---------------
+
+
+    $WAS_HOME/uninstall/uninstall
+    ./installRegistryUtils.sh -cleanAll (A partir de Websphere V6.1)
+    rm -r /opt/.ibm
+
+    vi ~root/vpd.properties (supprimer les lignes en rapport avec le produit a desinstaller)
+    rm -r $WAS_HOME/*
+    rm -r /tmp/IBM*
