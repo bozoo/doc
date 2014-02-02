@@ -1,7 +1,6 @@
 LINUX UBUNTU
 ============
 
-
 Package to install:
 
     apt-get install open-ssh nmon vim nmap sysstat
