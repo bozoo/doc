@@ -1,32 +1,33 @@
 CHEF
 ====
 
-Install Chef Server :
+Install Chef Server
+-------------------
 
-Chef server's hostname need to be FQDN
+1. Chef server's hostname need to be FQDN
 
     rpm -ivh chef-server-11.0.8-1.el6.x86_64.rpm chef-11.4.4-2.el6.x86_64.rpm
     chef-server-ctl reconfigure
     chef-server-ctl test
 
-Configure admin account :
+2. Configure admin account
 
     firefox https://$serverChef
 
-Copy admin pubkey and private key
+3. Copy admin pubkey and private key
 
 
-Install Chef client :
+4. Install Chef client
 
     rpm -ivh chef-11.4.4-2.el6.x86_64.rpm
     chef-client -v
 
-Install Git :
+5. Install Git
 
     yum install git
     git clone git://github.com/opscode/chef-repo.git
 
-Configure Chef Server :
+6. Configure Chef Server
 
     mkdir -p ~/chef-repo/.chef
     knife configure --initial

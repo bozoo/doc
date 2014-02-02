@@ -1,7 +1,8 @@
 VAGRANT
 =======
 
-# Create CentOS vagrant box :
+Create CentOS vagrant box
+-------------------------
 
 1. create vm in VirtualBox with audio and usb disabled
 2. install centos by default

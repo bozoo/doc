@@ -1,29 +1,30 @@
 RSYSLOG
 =======
 
-# Remote rsyslogd
-# for redhat5 :
+Remote rsyslogd
 
-# /etc/sysconfig/rsyslog :
- SYSLOGD_OPTIONS="-m 0 -r514 -x"
+ - for redhat5
 
-# for redhat6 :
+    # /etc/sysconfig/rsyslog :
+     SYSLOGD_OPTIONS="-m 0 -r514 -x"
 
-# /etc/rsyslog.conf :
-# Provides UDP syslog reception
-$ModLoad imudp.so
-$UDPServerRun 514
+ - for redhat6
 
-# Provides TCP syslog reception
-$ModLoad imtcp.so
-$InputTCPServerRun 514
+    # /etc/rsyslog.conf :
+    # Provides UDP syslog reception
+    $ModLoad imudp.so
+    $UDPServerRun 514
 
-# configure logfile on 10.1.1.2 server for 10.1.1.1 client:
+    # Provides TCP syslog reception
+    $ModLoad imtcp.so
+    $InputTCPServerRun 514
 
-# /etc/rsyslog.conf :
-:FROMHOST-IP, isequal, "10.1.1.1"           /var/log/10.1.1.1.log
+Configure logfile on 10.1.1.2 server for 10.1.1.1 client:
 
-# configure remote log from 10.1.1.1 client to 10.1.1.2 server:
+    # /etc/rsyslog.conf :
+    :FROMHOST-IP, isequal, "10.1.1.1"           /var/log/10.1.1.1.log
 
-# /etc/rsyslog.conf:
-user.*          @@10.1.1.2:514 # @ for tcp / @@ for udp
+Configure remote log from 10.1.1.1 client to 10.1.1.2 server:
+
+    # /etc/rsyslog.conf:
+    user.*          @@10.1.1.2:514 # @ for tcp / @@ for udp

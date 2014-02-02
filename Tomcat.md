@@ -1,7 +1,8 @@
 TOMCAT
 ======
 
-# Securing Tomcat 7 :
+Securing Tomcat 7
+-----------------
 
 1. Delete all default applications (sample, manager app, ...)
 2. Run under Security Manager (tomcat sandbox)

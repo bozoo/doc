@@ -1,132 +1,139 @@
 GIT
 ===
 
-# Clone a git repo
-git clone https://github.com/$userName/$repoGit
-# Clone a git repo in $repoDir
-git clone https://github.com/$userName/$repoGit $repoDir
+- Clone a git repo
 
-# Save current working git
-git stash
+    git clone https://github.com/$userName/$repoGit
 
-# Configure proxy for git
-git config [--global] http.proxy http://user:pass@proxyhost:proxyport
+- Clone a git repo in $repoDir
 
-# Remove sensitive data from git
-# 0) Backup $pathToFileToRemove
-# 1)
-git rm $pathToFileToRemove
-# 2)
-git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch $pathToFileToRemove' --prune-empty --tag-name-filter cat -- --all
-# 3)
-git push origin master --force
+    git clone https://github.com/$userName/$repoGit $repoDir
 
-# Resolve a merge conflict
-# 1) Keep remote file :
-rm $localConflictFile
-git checkout --theirs $remoteConflictFile
-fit commit -a
-# 2) Keep local file :
-git rm $remoteConflictFile
-git add $localConflitFile
-git commit -a
+- Save current working git
 
-#-----------------------------------
-#Git config to access my github repo
-#-----------------------------------
+    git stash
 
-git config --global user.name "$userName"
-# Sets the default name for git to use when you commit
-git config --global user.email "$eMail"
-# Sets the default email for git to use when you commit
-git commit --amend --reset-author
-# Reset author informations for firsts commits
-git config --global credential.helper cache
-# Set git to use the credential memory cache
-git config --global credential.helper 'cache --timeout=3600'
-# Set the cache to timeout after 1 hour (setting is in seconds)
+- Configure proxy for git
 
-mkdir -p github/$repoGit
-# Creates a directory for your project called "$repoGit" in your user directory
-cd github/$gitRepo/
-# Changes the current working directory to your newly created directory
-git init
-# Sets up the necessary Git files
-touch README
-# Creates a file called "README" in your $gitRepo directory
-git add README
-# Stages your README file, adding it to the list of files to be committed
-git commit -m 'first commit'
-# Commits your files, adding the message "first commit"
-git remote add origin https://github.com/$userName/$repoGit.git
-# Creates a remote named "origin" pointing at your GitHub repository
+    git config [--global] http.proxy http://user:pass@proxyhost:proxyport
+
+Remove sensitive data from git
+------------------------------
+
+Backup $pathToFileToRemove then:
+
+    git rm $pathToFileToRemove
+    git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch $pathToFileToRemove' --prune-empty --tag-name-filter cat -- --all
+    git push origin master --force
+
+ Resolve a merge conflict
+
+ - Keep remote file :
+
+    rm $localConflictFile
+    git checkout --theirs $remoteConflictFile
+    fit commit -a
+
+ - Keep local file :
+
+    git rm $remoteConflictFile
+    git add $localConflitFile
+    git commit -a
+
+Git config to access my github repo
+-----------------------------------
+
+    git config --global user.name "$userName"
+    # Sets the default name for git to use when you commit
+    git config --global user.email "$eMail"
+    # Sets the default email for git to use when you commit
+    git commit --amend --reset-author
+    # Reset author informations for firsts commits
+    git config --global credential.helper cache
+    # Set git to use the credential memory cache
+    git config --global credential.helper 'cache --timeout=3600'
+    # Set the cache to timeout after 1 hour (setting is in seconds)
+
+    mkdir -p github/$repoGit
+    # Creates a directory for your project called "$repoGit" in your user directory
+    cd github/$gitRepo/
+    # Changes the current working directory to your newly created directory
+    git init
+    # Sets up the necessary Git files
+    touch README
+    # Creates a file called "README" in your $gitRepo directory
+    git add README
+    # Stages your README file, adding it to the list of files to be committed
+    git commit -m 'first commit'
+    # Commits your files, adding the message "first commit"
+    git remote add origin https://github.com/$userName/$repoGit.git
+    # Creates a remote named "origin" pointing at your GitHub repository
 
 
-#---------------
-#Git-achievement
-#---------------
+Git-achievement
+---------------
 
-# git-achievements
-# @http://soliloquyforthefallen.net/blog/2011/04/27/git-achievements/
-echo "PATH=$PATH:~/git/git-achievements" >> .bash_profile
-echo "alias git=git-achievements" >> .bash_profile
-git config --global achievement.upload "true"
-cd git-achievements/
-git symbolic-ref HEAD refs/heads/gh-pages
-rm .git/index
-git add .
-git commit -a -m "Hope it works"
-git push origin gh-pages
+@http://soliloquyforthefallen.net/blog/2011/04/27/git-achievements/
 
-#-----------------------
-#Install Git on CentOS 5
-#-----------------------
+    echo "PATH=$PATH:~/git/git-achievements" >> .bash_profile
+    echo "alias git=git-achievements" >> .bash_profile
+    git config --global achievement.upload "true"
+    cd git-achievements/
+    git symbolic-ref HEAD refs/heads/gh-pages
+    rm .git/index
+    git add .
+    git commit -a -m "Hope it works"
+    git push origin gh-pages
 
-# Git Server :
-yum install git git-daemon
-mkdir -p ${repoGit}.git
+Install Git on CentOS 5
+-----------------------
 
-cd !$
-git --bare init
-git update-server-info
-chown -R apache:apache .
+ - Git Server :
 
-htpasswd -c /etc/httpd/conf/htpasswd-git git
+    yum install git git-daemon
+    mkdir -p ${repoGit}.git
 
-cat << EOF >> /etc/httpd/conf.d/git.conf
-SetEnv GIT_PROJECT_ROOT /data/nas/git
-SetEnv GIT_HTTP_EXPORT_ALL
-SetEnv REMOTE_USER=$REDIRECT_REMOTE_USER
-ScriptAlias /git/ /usr/libexec/git-core/git-http-backend/
+    cd !$
+    git --bare init
+    git update-server-info
+    chown -R apache:apache .
 
-<Directory "/data/nas/git">
-   Options None
-   AllowOverride None
-   Order allow,deny
-   Allow from all
-</Directory>
+    htpasswd -c /etc/httpd/conf/htpasswd-git git
 
-<Location /git>
-   AuthType Basic
-   AuthName "Git Access"
-   AuthUserFile /etc/httpd/conf/htpasswd-git
-   Require valid-user
-</Location>
-EOF
+    cat << EOF >> /etc/httpd/conf.d/git.conf
+    SetEnv GIT_PROJECT_ROOT /data/nas/git
+    SetEnv GIT_HTTP_EXPORT_ALL
+    SetEnv REMOTE_USER=$REDIRECT_REMOTE_USER
+    ScriptAlias /git/ /usr/libexec/git-core/git-http-backend/
 
-service httpd restart
+    <Directory "/data/nas/git">
+       Options None
+       AllowOverride None
+       Order allow,deny
+       Allow from all
+    </Directory>
 
-# Cygwin client :
+    <Location /git>
+       AuthType Basic
+       AuthName "Git Access"
+       AuthUserFile /etc/httpd/conf/htpasswd-git
+       Require valid-user
+    </Location>
+    EOF
 
-cd d:
-mkdir -p git/sysadmin
-cd !$
-git init
-git remote add origin http://${gitUser}@${gitServer}/${repoGit}.git
-touch README
-git add .
-git commit -a -m 'Initial import'
-git config --global user.name $userName
-git config --global user.email $userMail
-git commit --amend --reset-author
-git push origin master
+    service httpd restart
+
+ - Cygwin client :
+
+    cd d:
+    mkdir -p git/sysadmin
+    cd !$
+    git init
+    git remote add origin http://${gitUser}@${gitServer}/${repoGit}.git
+    touch README
+    git add .
+    git commit -a -m 'Initial import'
+    git config --global user.name $userName
+    git config --global user.email $userMail
+    git commit --amend --reset-author
+    git push origin master
