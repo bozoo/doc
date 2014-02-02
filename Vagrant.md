@@ -1,5 +1,5 @@
-FAQ VAGRANT
-===========
+VAGRANT
+=======
 
 # Create CentOS vagrant box :
 

@@ -1,4 +1,4 @@
-QUERY MYSQL
+MYSQL QUERY
 ===========
 
 List users :

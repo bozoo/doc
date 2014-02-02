@@ -1,5 +1,5 @@
-FAQ MYSQL
-=========
+MYSQL
+=====
 
 Secure MySQL after install :
 

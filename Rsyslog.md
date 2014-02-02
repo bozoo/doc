@@ -1,8 +1,8 @@
-FAQ RSYSLOG
-===========
+RSYSLOG
+=======
 
 # Remote rsyslogd
-# for redhat5 : 
+# for redhat5 :
 
 # /etc/sysconfig/rsyslog :
  SYSLOGD_OPTIONS="-m 0 -r514 -x"

@@ -1,5 +1,5 @@
-FAQ Ruby
-========
+RUBY
+====
 
 # Variables :
 
@@ -7,7 +7,7 @@ my_num = 25
 my_bool = true # or false
 my_string = "Hello world!"
 
-# By convention, these variables should start 
+# By convention, these variables should start
 # with a lowercase letter and words should be separated by underscores
 
 print my_string || print "#{my_string}" # use #{...} to print var inside ""
@@ -21,7 +21,7 @@ print my_string || print "#{my_string}" # use #{...} to print var inside ""
 puts : print line with \n
 print : print line without \n
 gets : read input
-gets.chomp : read input and remove \n 
+gets.chomp : read input and remove \n
 
 # String Methods :
 
@@ -63,7 +63,7 @@ else
   puts "KO"
 end
 
-# Loop : 
+# Loop :
 
 while ...
 	...

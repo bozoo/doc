@@ -1,5 +1,5 @@
-FAQ NC
-======
+NC
+==
 
 # Scan port with nc :
 nc -z -v -n 192.168.1.1 80
@@ -8,7 +8,7 @@ nc -n -z -v 192.168.1.1 1-1024 2>&1 | grep succeeded
 # File transfert with nc :
 server : nc -l 1567 < file.txt
 client : nc -n 172.31.100.7 1567 > file.txt
-# or 
+# or
 server : nc -l 1567 > file.txt
 client : nc 172.31.100.23 1567 < file.txt
 

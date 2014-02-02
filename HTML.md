@@ -1,5 +1,5 @@
-FAQ HTML
-========
+HTML
+====
 
 <!DOCTYPE html>
 <html>
@@ -15,12 +15,12 @@ FAQ HTML
 <!-- Ordered List -->
          <ol>
               <li>1st <strong>item</strong></li>
-              <li>2nd item</li>          
+              <li>2nd item</li>
          </ol>
 <!-- Unordered List -->
          <ul>
               <li>1st item</li>
-              <li>2nd item</li>          
+              <li>2nd item</li>
          </ol>
      </body>
 </html>
@@ -42,9 +42,9 @@ Tables:
     <head>
         <title>Table Time</title>
     </head>
-   
+
     <body>
-       
+
         <table style="border-collapse:collapse;">
             <thead>
                 <tr>
@@ -58,21 +58,21 @@ Tables:
             <tbody>
                 <tr>
                     <td style="padding:5px;">King Kong</td>
-                    <td style="padding:5px;border-left:1px solid black;">1933</td>    
+                    <td style="padding:5px;border-left:1px solid black;">1933</td>
                 </tr>
-               
+
                 <tr>
                     <td style="padding:5px;">Dracula</td>
                     <td style="padding:5px;border-left:1px solid black;">1897</td>
                 </tr>
-               
+
                 <tr>
                     <td style="padding:5px;">Bride of Frankenstein</td>
                     <td style="padding:5px;border-left:1px solid black;">1944</td>
                 </tr>
             </tbody>
         </table>
-       
+
     </body>
 
 
@@ -84,8 +84,8 @@ Div et Span:
               <div style="width:50px; height:50px; background-color:yellow"></div>
          </a>
 
-          <p>This text is black, except for the word <span style="color:red">red</span>!</p> 
-          <p>My favorite font is <span style="font-family:Futura">Futura</span>!</p> 
+          <p>This text is black, except for the word <span style="color:red">red</span>!</p>
+          <p>My favorite font is <span style="font-family:Futura">Futura</span>!</p>
 
 CSS:
 
@@ -136,7 +136,7 @@ a {
 
  Bouton:
 
-<div>     
+<div>
      <a href="http://www.google.com">Find us on <span>Google!</span></a>
 </div>
 
@@ -211,7 +211,7 @@ p:nth-child(2) {
 }
 
 
-CSS with header, footer and two columns : 
+CSS with header, footer and two columns :
 div {
 	border-radius: 5px;
 }

@@ -1,3 +1,6 @@
+WMQ
+===
+
 Start instance :
 
     strmqm -x <QMGR>

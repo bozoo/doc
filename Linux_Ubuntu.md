@@ -1,5 +1,5 @@
-FAQ Ubuntu
-==========
+LINUX UBUNTU
+============
 
 # Install Sublime Text :
 

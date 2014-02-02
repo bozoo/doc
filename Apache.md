@@ -1,5 +1,5 @@
-FAQ APACHE
-==========
+APACHE
+======
 
 # Securing Apache :
 

@@ -1,5 +1,5 @@
-FAQ MacOS X
-===========
+MACOS X
+=======
 
 # Install Homebrew :
 # Prereq : Install Xcode et Xcode Commandline Tools

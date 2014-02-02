@@ -1,5 +1,5 @@
-FAQ Sublime Text
-================
+SUBLIME TEXT
+============
 
 sources :
 

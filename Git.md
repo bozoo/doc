@@ -1,5 +1,5 @@
-FAQ Git
-=======
+GIT
+===
 
 # Clone a git repo
 git clone https://github.com/$userName/$repoGit

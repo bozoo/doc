@@ -1,5 +1,5 @@
-FAQ Tmux
-========
+TMUX
+====
 
 @http://doc.ubuntu-fr.org/tmux
 
@@ -20,7 +20,7 @@ FAQ Tmux
 <C-b>+<q> : Briefly display pane indexes
 
 <C-b> then ":join" : allow to join a terminal in a split window
-	args : 
+	args :
 		-h or -v (horizontal or vertical)
 		-s 3.0 terminal 3 and pane 0
 		-p 50 percent of window

@@ -1,4 +1,4 @@
-Markdown: Basics
+MARKDOWN: BASICS
 ================
 
 Source : http://daringfireball.net/projects/markdown/basics.text

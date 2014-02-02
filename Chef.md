@@ -1,5 +1,5 @@
-CHEF INSTALL
-============
+CHEF
+====
 
 Install Chef Server :
 

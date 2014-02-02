@@ -1,3 +1,6 @@
+WAS
+===
+
 ### Java System Dump generation on AIX
 
     # Set Sudo environnment to allow chdev commands via sudo :

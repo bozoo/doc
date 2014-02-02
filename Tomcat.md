@@ -1,5 +1,5 @@
-FAQ Tomcat
-==========
+TOMCAT
+======
 
 # Securing Tomcat 7 :
 
