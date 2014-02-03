@@ -19,9 +19,15 @@ Java System Dump generation on AIX
 
 [How to process an IBM SDK core dump with Jextract (AIX, Linux, Windows)](http://www-01.ibm.com/support/docview.wss?uid=swg21577379)
 
+Analyse Was btrace
+------------------
+
+Configuration: $WAS_INSTALL/etc/trace-cfg.xml
+
+    $WAS_INSTALL/bin/trace read $path_of_tracefile
+
 WAS 6 Uninstall
 ---------------
-
 
     $WAS_HOME/uninstall/uninstall
     ./installRegistryUtils.sh -cleanAll (A partir de Websphere V6.1)
