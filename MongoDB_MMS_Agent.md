@@ -4,7 +4,7 @@ MongoDB_MMS_Agent
 [Documentation](https://mms.mongodb.com/help-hosted/v1.2/monitoring/)
 
 MMS Server : monitoring server
-MMS Agent : sonde for mongodb monitoring (same as MMS Server for axatech)
+MMS Agent : sonde for mongodb monitoring
 MMS Node : mongodb monitored by MMS Agent
 
 Sysctl parameters for MMS Server
