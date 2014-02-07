@@ -1,5 +1,25 @@
-ÂCHEF INSTALL
-============
+CHEF SERVER
+===========
+
+Administration
+--------------
+
+/opt/chef-server – The installation from the package is here.
+/etc/chef-server – The API specific configuration files and keys are here.
+/var/opt/chef-server – The dependent services such as RabbitMQ, Nginx and so on are here, including the PostgreSQL database, SOLR indexes.
+/var/log/chef-server – All the runit services write their output here.
+
+    chef-server-ctl
+
+reconfigure : configure chef
+test : test chef
+status : show status of all chef services
+start : start chef
+stop : stop chef
+tail : tail logs
+cleanse : remove all configuration
+
+Reconfigure use /etc/chef-server/chef-server-running.json
 
 Install Chef Server
 -------------------
@@ -40,12 +60,6 @@ Configure Chef Server
 
 @http://docs.opscode.com/install_bootstrap.html
 
-Install Chef client on Raspbian
---------------------------------
 
-    apt-get update && apt-get upgrade
-    apt-get install ruby1.9.1 ruby1.9.1-dev build-essential wget
 
-    gem update --no-rdoc --no-ri
-    gem install ohai --no-rdoc --no-ri --verbose
-    gem install chef --no-rdoc --no-ri --verbose
+
