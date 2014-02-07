@@ -1,4 +1,4 @@
-CHEF INSTALL
+ÂCHEF INSTALL
 ============
 
 Install Chef Server
