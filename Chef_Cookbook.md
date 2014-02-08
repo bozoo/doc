@@ -9,6 +9,7 @@ But if really need to edit lines in existing files, we must use the library [Che
 
 Example:
 
+    ```ruby
     ruby_block "edit etc hosts" do
       block do
         rc = Chef::Util::FileEdit.new("/etc/hosts")
@@ -19,6 +20,7 @@ Example:
         rc.write_file
       end
     end
+    ```
 
 The community [line](http://community.opscode.com/cookbooks/line) allow to use resources which implement this Library.
 
