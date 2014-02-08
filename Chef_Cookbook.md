@@ -37,6 +37,7 @@ Then create the library file:
 
 Then, add this method to its class, Chef::Recipe:
 
+```ruby
 class Chef
   class Recipe
     def chef_version
@@ -44,12 +45,15 @@ class Chef
     end
   end
 end
+```
 
 To use this in a recipe, simply call that method.
 
 Example:
 
-    mac_service_supported = version_checker.include?(chef_version)
+```ruby
+mac_service_supported = version_checker.include?(chef_version)
+```
 
 Example 2:
 
@@ -57,56 +61,68 @@ Helper library the Encrypted Data Bag example.
 
 Edit cookbooks/my_helpers/libraries/encrypted_data_bag_item.rb:
 
-    class Chef
-      class Recipe
-        def encrypted_data_bag_item(bag, item, secret_file = Chef::EncryptedDataBagItem::DEFAULT_SECRET_FILE)
-          DataBag.validate_name!(bag.to_s)
-          DataBagItem.validate_id!(item)
-          secret = EncryptedDataBagItem.load_secret(secret_file)
-          EncryptedDataBagItem.load(bag, item, secret)
-        rescue Exception
-          Log.error("Failed to load data bag item: #{bag.inspect} #{item.inspect}")
-          raise
-        end
-      end
+```ruby
+class Chef
+  class Recipe
+    def encrypted_data_bag_item(bag, item, secret_file = Chef::EncryptedDataBagItem::DEFAULT_SECRET_FILE)
+      DataBag.validate_name!(bag.to_s)
+      DataBagItem.validate_id!(item)
+      secret = EncryptedDataBagItem.load_secret(secret_file)
+      EncryptedDataBagItem.load(bag, item, secret)
+    rescue Exception
+      Log.error("Failed to load data bag item: #{bag.inspect} #{item.inspect}")
+      raise
     end
+  end
+end
+```
 
 To use it on a recipe:
 
-    user_creds = encrypted_data_bag_item("secrets", "credentials)
+```ruby
+user_creds = encrypted_data_bag_item("secrets", "credentials)
+```
 
 Use Node Tags
 -------------
 
 Search nodes with a tag:
 
-    decommissioned_nodes = search(:node, "tags:decommissioned")
+```ruby
+decommissioned_nodes = search(:node, "tags:decommissioned")
+```
 
 Use tagged? to see if the node running Chef has a specific tag:
 
-    if tagged?("decommissioned")
-      raise "Why am I running Chef if I'm decommissioned?"
-    end
+```ruby
+if tagged?("decommissioned")
+  raise "Why am I running Chef if I'm decommissioned?"
+end
+```
 
 If the tags of the node need to be modified during a run, that can be done with the tag and untag methods.
 
-    tag("deployed")
-    log "I'm printed if the tag deployed is set." do
-      only_if { tagged?("deployed") }
-    end
+```ruby
+tag("deployed")
+log "I'm printed if the tag deployed is set." do
+  only_if { tagged?("deployed") }
+end
+```
 
 Untag a node after migration:
 
-    if tagged?("run_migrations")
-      execute "rake db:migrate" do
-        cwd "/srv/myapp/current"
-        notifies :create, "ruby_block[untag-run-migrations]", :immediately
-      end
-    end
+```ruby
+if tagged?("run_migrations")
+  execute "rake db:migrate" do
+    cwd "/srv/myapp/current"
+    notifies :create, "ruby_block[untag-run-migrations]", :immediately
+  end
+end
 
-    ruby_block "untag-run-migrations" do
-      block do
-        untag("run_migrations")
-      end
-      only_if { tagged?("run_migrations") }
-    end
+ruby_block "untag-run-migrations" do
+  block do
+    untag("run_migrations")
+  end
+  only_if { tagged?("run_migrations") }
+end
+```
