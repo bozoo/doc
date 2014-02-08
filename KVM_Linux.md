@@ -11,30 +11,30 @@ Prerequisites:
 
 Directories:
 
-images dir : /var/lib/libvirt/images
-config dir : /etc/libvirt/qemu/
+images dir: /var/lib/libvirt/images
+config dir: /etc/libvirt/qemu/
 
 Tools
 -----
 
  - virsh commands:
 
-List started VM : virsh list
-Start VM : virsh create ${VM}.xml # ${VM}.xml : VM config file
+List started VM: virsh list
+Start VM: virsh create ${VM}.xml # ${VM}.xml: VM config file
            virsh start ${VM}
-Stop VM (forced) : virsh destroy ${VM}
-Stop VM (clean) : virsh shutdown ${VM}
-Show VM info : virsh dominfo ${VM}
+Stop VM (forced): virsh destroy ${VM}
+Stop VM (clean): virsh shutdown ${VM}
+Show VM info: virsh dominfo ${VM}
 
-Connect to VM : virsh console ${VM}
+Connect to VM: virsh console ${VM}
 
-escape character :
-- on azerty : CTRL + ALTGR + 8
-- on mac : CTRL + 6
+escape character:
+- on azerty: CTRL + ALTGR + 8
+- on mac: CTRL + 6
 
  - qemu-img commands:
 
-Convert IMG : qemu-img convert -c -f raw -O qcow2 file.img file.qcow2
+Convert IMG: qemu-img convert -c -f raw -O qcow2 file.img file.qcow2
 
  - Other tools
 
@@ -49,12 +49,14 @@ Allow virsh console to work
 
 Add the following XML in domain's XML (using "virsh edit")
 
-    <serial type='pty'>
-       <target port='0'/>
-    </serial>
-    <console type='pty'>
-       <target type='serial' port='0'/>
-    </console>
+```xml
+<serial type='pty'>
+  <target port='0'/>
+</serial>
+<console type='pty'>
+  <target type='serial' port='0'/>
+</console>
+```
 
 Edit Grub config
 

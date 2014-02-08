@@ -115,7 +115,7 @@ Untag a node after migration:
 if tagged?("run_migrations")
   execute "rake db:migrate" do
     cwd "/srv/myapp/current"
-    notifies :create, "ruby_block[untag-run-migrations]", :immediately
+    notifies:create, "ruby_block[untag-run-migrations]",:immediately
   end
 end
 

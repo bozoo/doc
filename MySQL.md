@@ -89,107 +89,148 @@ Set MySQL logs to debug
 
 Show databases
 
-    > show databases;
+```sql
+> show databases;
+```
 
 Change database
 
-    > use myDatabase;
+```sql
+> use myDatabase;
+```
 
 Show tables
 
-    > show tables;
+```sql
+> show tables;
+```
 
 Show columns of a table
 
-    > desc myTable;
+```sql
+> desc myTable;
+```
 
 Show date
 
-    > select now() from dual;
+```sql
+> select now() from dual;
+```
 
 Show plan of a query
 
-    > explain myQuery; # myQuery = "select * from whatyouwhant or any other query"
+```sql
+> explain myQuery; # myQuery = "select * from whatyouwhant or any other query"
+```
 
 Show index for at table
 
-    > show index from myTable;
+```sql
+> show index from myTable;
+```
 
 Save result of a query into a file
 
-    > select * into outfile '/tmp/myfile.txt' from myTable;
+```sql
+> select * into outfile '/tmp/myfile.txt' from myTable;
+```
 
 or
 
-    > select * into outfile '/tmp/myfile.txt' fields terminated by ',' from myTable;
+```sql
+> select * into outfile '/tmp/myfile.txt' fields terminated by ',' from myTable;
+```
 
 Show users:
 
-    > use mysql
-    > select host, user, password from user;
+```sql
+> use mysql
+> select host, user, password from user;
+```
 
-Change password for non-root user
+Change password for non-root user:
 
-    > use mysql
-    > update user set password=PASSWORD("MyPassword")  where User='MyUser';
-    > commit;
-    > flush privileges;
-    > exit
+```sql
+> use mysql
+> update user set password=PASSWORD("MyPassword")  where User='MyUser';
+> commit;
+> flush privileges;
+> exit
+```
 
-Change root password
+Change root password:
 
-    # Stop MySQL and start it in safe mode
+1. Stop MySQL and start it in safe mode
+
     /usr/bin/safe_mysqld --skip-grant-tables&
-    /usr/bin/mysql
-    > use mysql;
-    > update user set password = password('.......') where user = 'root' and
-host='localhost';
-    > flush privileges;
-    # Restart MySQL
 
-Show MySQL engine for a database
+2. Connect to mysql:
 
-    > select table_name,engine from information_schema.tables where table_schema='DB_NAME';
+```sql
+> use mysql;
+> update user set password = password('.......') where user = 'root' and host='localhost';
+> flush privileges;
+```
 
-Show DB Size
+4. Restart MySQL
 
-    > SELECT table_schema "Data Base Name",
-    sum( data_length + index_length ) / 1024 /
-    1024 "Data Base Size in MB",
-    sum( data_free )/ 1024 / 1024 "Free Space in MB"
-    FROM information_schema.TABLES
-    GROUP BY table_schema ;
+Show MySQL engine for a database:
 
-Show tables size
+```sql
+> select table_name,engine from information_schema.tables where table_schema='DB_NAME';
+```
 
-    > SELECT CONCAT(table_schema, '.', table_name),
-    CONCAT(ROUND(table_rows / 1000000, 2), 'M')                                    rows,
-    CONCAT(ROUND(data_length / ( 1024 * 1024 * 1024 ), 2), 'G')                    DATA,
-    CONCAT(ROUND(index_length / ( 1024 * 1024 * 1024 ), 2), 'G')                   idx,
-    CONCAT(ROUND(( data_length + index_length ) / ( 1024 * 1024 * 1024 ), 2), 'G') total_size,
-    ROUND(index_length / data_length, 2)                                           idxfrac
-    FROM   information_schema.TABLES
-    ORDER  BY data_length + index_length DESC
-    LIMIT  10;
+Show DB Size:
+
+```sql
+> SELECT table_schema "Data Base Name",
+         sum( data_length + index_length ) / 1024 /
+              1024 "Data Base Size in MB",
+         sum( data_free )/ 1024 / 1024 "Free Space in MB"
+  FROM information_schema.TABLES
+  GROUP BY table_schema ;
+```
+
+Show tables size:
+
+```sql
+> SELECT CONCAT(table_schema, '.', table_name),
+         CONCAT(ROUND(table_rows / 1000000, 2), 'M')                                    rows,
+         CONCAT(ROUND(data_length / ( 1024 * 1024 * 1024 ), 2), 'G')                    DATA,
+         CONCAT(ROUND(index_length / ( 1024 * 1024 * 1024 ), 2), 'G')                   idx,
+         CONCAT(ROUND(( data_length + index_length ) / ( 1024 * 1024 * 1024 ), 2), 'G') total_size,
+         ROUND(index_length / data_length, 2)                                           idxfrac
+  FROM   information_schema.TABLES
+  ORDER  BY data_length + index_length DESC
+  LIMIT  10;
+```
 
 Repair MySQL
 ------------
 
-Check MyISAM tables
+Check MyISAM tables:
 
-    > CHECK TABLE;
+```sql
+> CHECK TABLE;
+```
 
-Repair MyISAM tables
+Repair MyISAM tables:
 
-    > REPAIR TABLE;
+```sql
+> REPAIR TABLE;
+```
 
-Optimize MyISAM table (cold operation, need to have twice space disk of the table on fs)
+Optimize MyISAM table (cold operation, need to have twice space disk of the table on fs):
 
-    > OPTIMIZE TABLE;
+```sql
+> OPTIMIZE TABLE;
+```
 
-Analyse MyISAM table
+Analyse MyISAM table:
 
-    > ANALYZE TABLE;
+```sql
+> ANALYZE TABLE;
+```
 
 Backup / Restore
 ----------------
@@ -198,11 +239,11 @@ Backup MySQL DB
 
     mysqldump -u [username] –p[password] [opts] [database_name] [tables_names] > [dump_file.sql]
 
-    opts :
-    --databases [db_name1] [db_name2] [...] : list dbs to backup
-    --all-databases : backup all dbs
-    --no-data : backup only db structure without data
-    --no-create-info : backup data only
+    opts:
+    --databases [db_name1] [db_name2] [...]: list dbs to backup
+    --all-databases: backup all dbs
+    --no-data: backup only db structure without data
+    --no-create-info: backup data only
 
 Restore MySQL DB on an empty DB
 
@@ -217,65 +258,73 @@ Replication
 
 ### On Master
 
-Edit my.cnf
+Edit my.cnf:
 
-    server-id = 1
-    binlog-do-db=my_db
-    relay-log = /var/lib/mysql/mysql-relay-bin
-    relay-log-index = /var/lib/mysql/mysql-relay-bin.index
-    log-error = /var/lib/mysql/mysql.err
-    master-info-file = /var/lib/mysql/mysql-master.info
-    relay-log-info-file = /var/lib/mysql/mysql-relay-log.info
-    log-bin = /var/lib/mysql/mysql-bin
+```ini
+server-id = 1
+binlog-do-db=my_db
+relay-log = /var/lib/mysql/mysql-relay-bin
+relay-log-index = /var/lib/mysql/mysql-relay-bin.index
+log-error = /var/lib/mysql/mysql.err
+master-info-file = /var/lib/mysql/mysql-master.info
+relay-log-info-file = /var/lib/mysql/mysql-relay-log.info
+log-bin = /var/lib/mysql/mysql-bin
+```
 
 Set privileges for replication
 
-    \> GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'your_password';
-    \> FLUSH PRIVILEGES;
-    \> FLUSH TABLES WITH READ LOCK;
-    \> SHOW MASTER STATUS;
-    +------------------+----------+--------------+------------------+
-    | File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
-    +------------------+----------+--------------+------------------+
-    | mysql-bin.000003 | 11128001 | my_db        |                  |
-    +------------------+----------+--------------+------------------+
+```sql
+> GRANT REPLICATION SLAVE ON *.* TO 'slave_user'@'%' IDENTIFIED BY 'your_password';
+> FLUSH PRIVILEGES;
+> FLUSH TABLES WITH READ LOCK;
+> SHOW MASTER STATUS;
++------------------+----------+--------------+------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |
++------------------+----------+--------------+------------------+
+| mysql-bin.000003 | 11128001 | my_db        |                  |
++------------------+----------+--------------+------------------+
+```
 
 ### On Slave
 
-Edit my.cnf
+Edit my.cnf:
 
-    server-id = 2
-    master-host=192.168.1.1
-    master-connect-retry=60
-    master-user=slave_user
-    master-password=yourpassword
-    replicate-do-db=my_db
-    relay-log = /var/lib/mysql/mysql-relay-bin
-    relay-log-index = /var/lib/mysql/mysql-relay-bin.index
-    log-error = /var/lib/mysql/mysql.err
-    master-info-file = /var/lib/mysql/mysql-master.info
-    relay-log-info-file = /var/lib/mysql/mysql-relay-log.info
-    log-bin = /var/lib/mysql/mysql-bin
+```ini
+server-id = 2
+master-host=192.168.1.1
+master-connect-retry=60
+master-user=slave_user
+master-password=yourpassword
+replicate-do-db=my_db
+relay-log = /var/lib/mysql/mysql-relay-bin
+relay-log-index = /var/lib/mysql/mysql-relay-bin.index
+log-error = /var/lib/mysql/mysql.err
+master-info-file = /var/lib/mysql/mysql-master.info
+relay-log-info-file = /var/lib/mysql/mysql-relay-log.info
+log-bin = /var/lib/mysql/mysql-bin
+```
 
 Import dump of the master db
 
 Set slave replication
 
-    \> slave stop;
-    \> CHANGE MASTER TO MASTER_HOST='192.168.1.1', MASTER_USER='slave_user', MASTER_PASSWORD='yourpassword', MASTER_LOG_FILE='mysql-bin.000003', MASTER_LOG_POS=11128001;
-    \> slave start;
-    \> show slave status\G
-    *************************** 1. row ***************************
-        Slave_IO_State: Waiting for master to send event
-          Master_Host: 192.168.1.1
-          Master_User: slave_user
-          Master_Port: 3306
-          Connect_Retry: 60
-          Master_Log_File: mysql-bin.000003
-          Read_Master_Log_Pos: 12345100
-          Relay_Log_File: mysql-relay-bin.000002
-          Relay_Log_Pos: 11381900
-          Relay_Master_Log_File: mysql-bin.000003
-          Slave_IO_Running: Yes
-          Slave_SQL_Running: Yes
-          Replicate_Do_DB: my_db
+```sql
+> slave stop;
+> CHANGE MASTER TO MASTER_HOST='192.168.1.1', MASTER_USER='slave_user', MASTER_PASSWORD='yourpassword', MASTER_LOG_FILE='mysql-bin.000003', MASTER_LOG_POS=11128001;
+> slave start;
+> show slave status\G
+*************************** 1. row ***************************
+    Slave_IO_State: Waiting for master to send event
+    Master_Host: 192.168.1.1
+    Master_User: slave_user
+    Master_Port: 3306
+    Connect_Retry: 60
+    Master_Log_File: mysql-bin.000003
+    Read_Master_Log_Pos: 12345100
+    Relay_Log_File: mysql-relay-bin.000002
+    Relay_Log_Pos: 11381900
+    Relay_Master_Log_File: mysql-bin.000003
+    Slave_IO_Running: Yes
+    Slave_SQL_Running: Yes
+    Replicate_Do_DB: my_db
+```

@@ -3,7 +3,7 @@ MACOS X
 
 Install Homebrew
 
-Prereq : Install Xcode et Xcode Commandline Tools
+Prereq: Install Xcode et Xcode Commandline Tools
 
     ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 
@@ -51,16 +51,16 @@ Show full path in finder
 
 Dock
 
-Remove the Auto-Hide Delay :
+Remove the Auto-Hide Delay:
 
     defaults write com.apple.Dock autohide-delay -float 0 && killall Dock
     defaults delete com.apple.Dock autohide-delay && killall Dock # for restore
 
-Remove Dock Animation Completely :
+Remove Dock Animation Completely:
 
     defaults write com.apple.dock autohide-time-modifier -int 0;killall Dock
 
-Set a Fast Dock Display Animation :
+Set a Fast Dock Display Animation:
 
     defaults write com.apple.dock autohide-time-modifier -float 0.12;killall Dock
 
@@ -70,13 +70,13 @@ Restore Default Animation Speed.
 
 Keepassx
 
-Open multiple instances :
+Open multiple instances:
 
     open -n /Applications/KeePassX.app /file/to/database.kdb
 
 Finder Quick Look
 
-Enable text selection :
+Enable text selection:
 
     defaults write com.apple.finder QLEnableTextSelection -bool TRUE; killall Finder
 
@@ -84,7 +84,7 @@ Disable startup sound
 
     sudo nvram SystemAudioVolume=%80
 
-Enable :
+Enable:
 
     sudo nvram -d SystemAudioVolume
 

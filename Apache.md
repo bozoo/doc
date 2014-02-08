@@ -4,78 +4,103 @@ APACHE
 Securing Apache
 ---------------
 
-Remove Server Version Banner
+Remove Server Version Banner:
 
-    ServerTokens Prod # change Header to production only, i.e. Apache
-    ServerSignature Off # remove the version information from the page generated like 403, 404, 502
+```apacheconf
+ServerTokens Prod # change Header to production only, i.e. Apache
+ServerSignature Off # remove the version information from the page generated like 403, 404, 502
+```
 
-Disable directory browser listing
+Disable directory browser listing:
 
-    Options None
-    # or
-    Options -Indexes
+```apacheconf
+Options None
+# or
+Options -Indexes
+```
 
-Disable .htaccess
+Disable .htaccess:
 
-    AllowOverride None
+```apacheconf
+AllowOverride None
+```
 
-Limit HTTP Requests Method
+Limit HTTP Requests Method:
 
-    <LimitExcept GET POST HEAD>
+```apacheconf
+<LimitExcept GET POST HEAD>
     deny from all
-    </LimitExcept>
+</LimitExcept>
+```
 
-Disable Trace HTTP Request
+Disable Trace HTTP Request:
 
-    TraceEnable off
+```apacheconf
+TraceEnable off
+```
 
-Set cookie with HttpOnly and Secure flag
+Set cookie with HttpOnly and Secure flag:
 
-    mod_headers.so
-    Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+```apacheconf
+mod_headers.so
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+```
 
-Prevent Clickjacking Attack
+Prevent Clickjacking Attack:
 
-    mod_headers.so
-    Header always append X-Frame-Options SAMEORIGIN
+```apacheconf
+mod_headers.so
+Header always append X-Frame-Options SAMEORIGIN
+```
 
-Disable SSI
+Disable SSI:
 
-    Options –Indexes -Includes
+```apacheconf
+Options –Indexes -Includes
+```
 
-X-XSS Protection
+X-XSS Protection:
 
-    Header set X-XSS-Protection “1; mode=block”
+```apacheconf
+Header set X-XSS-Protection “1; mode=block”
+```
 
-Disable HTTP 1.0 Protocol
+Disable HTTP 1.0 Protocol:
 
-    mod_rewrite.so
-    RewriteEngine On
-    RewriteCond %{THE_REQUEST} !HTTP/1\.1$
-    RewriteRule .* - [F]
+```apacheconf
+mod_rewrite.so
+RewriteEngine On
+RewriteCond %{THE_REQUEST} !HTTP/1\.1$
+RewriteRule .* - [F]
+```
 
-Set Timeout
+Set Timeout:
 
-    Timeout 60
+```apacheconf
+Timeout 60
+```
 
-Disable SSL v2
+Disable SSL v2:
 
-    SSLProtocol –ALL +SSLv3 +TLSv1
+```apacheconf
+SSLProtocol –ALL +SSLv3 +TLSv1
+```
 
-Use ModSecurity
+Use [ModSecurity](http://www.modsecurity.org/)
 
-http://www.modsecurity.org/
+Set Listen with absolute IP and port:
 
-Set Listen with absolute IP and port
+```apacheconf
+Listen 10.10.10.1:80
+```
 
-    Listen 10.10.10.1:80
+Add time and session ID to Access Logging:
 
-Add time and session ID to Access Logging
+```apacheconf
+LogFormat "%h %l %u %t \"%{sessionID}C\" \"%r\" %>s %b %T" common
+```
 
-    LogFormat "%h %l %u %t \"%{sessionID}C\" \"%r\" %>s %b %T" common
-
-Disable unwanted modules
-
-    mod_dav
-    mod_dav_fs
-    mod_info
+Disable unwanted modules:
+ - mod_dav
+ - mod_dav_fs
+ - mod_info

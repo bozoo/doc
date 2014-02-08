@@ -32,7 +32,7 @@ Stop Oracle (dataguard + ASM):
 ASM
 ---
 
-Find which san volume is associated with an ASM disk :
+Find which san volume is associated with an ASM disk:
 
     /etc/init.d/oracleasm listdisks
     VOLUME1

@@ -47,7 +47,13 @@ increase max LV allocation:
 
 Check and fix STALE PP problems:
 
-    for vg in $(lsvg); do echo "$vg - `lsvg $vg | awk '/STALE/ {print $4,$5,$6}'`"; done
+```shell
+for vg in $(lsvg)
+do
+  echo "$vg - `lsvg $vg | awk '/STALE/ {print $4,$5,$6}'`"
+done
+```
+
     syncvg -v $vg
 
 Create FS:

@@ -11,13 +11,13 @@ Administration
 
     chef-server-ctl
 
-reconfigure : configure chef
-test : test chef
-status : show status of all chef services
-start : start chef
-stop : stop chef
-tail : tail logs
-cleanse : remove all configuration
+reconfigure: configure chef
+test: test chef
+status: show status of all chef services
+start: start chef
+stop: stop chef
+tail: tail logs
+cleanse: remove all configuration
 
 Reconfigure use /etc/chef-server/chef-server-running.json
 

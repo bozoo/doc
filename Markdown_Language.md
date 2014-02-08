@@ -1,7 +1,7 @@
 MARKDOWN: BASICS
 ================
 
-Source : http://daringfireball.net/projects/markdown/basics.text
+Source: http://daringfireball.net/projects/markdown/basics.text
 
 ## Paragraphs, Headers, Blockquotes ##
 

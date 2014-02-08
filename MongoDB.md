@@ -11,10 +11,14 @@ Generate keyFile: `openssl rand -base64 753 > keyfile`
 
 Create Admin User:
 
-    mongo>use admin
-    mongo>db.addUser( { user: "<username>",
-                        pwd: "<password>",
-                        roles: [ "userAdminAnyDatabase" ] } )
+```javascript
+mongo>use admin
+mongo>db.addUser( { user: "<username>",
+                    pwd: "<password>",
+                    roles: [ "userAdminAnyDatabase" ]
+                  }
+                )
+```
 
 Localhost Authentication:
 

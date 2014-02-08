@@ -5,13 +5,13 @@ Create Chef kitchen folder:
 
     mkdir chef-solo-example && cd chef-solo-example
 
-Use bundler to get some useful gems:
+Edit Gemfile to install gems with [Bundler](http://bundler.io/):
 
-    cat << EOF >> Gemfile
-    source :rubygems
-    gem 'knife-solo'
-    gem 'librarian'
-    EOF
+```ruby
+source:rubygems
+gem 'knife-solo'
+gem 'librarian'
+```
 
     bundle
 
@@ -51,15 +51,17 @@ Create librarian Cheffile to manage the cookbooks:
     librarian-chef init
     create  Cheffile
 
-Add to Cheffile nginx cookbook. More cookbooks you can find at community.opscode.com.
+Add to Cheffile nginx cookbook. More cookbooks you can find at [Opscode Community](http://community.opscode.com).
 
-    cat << EOF >> Cheffile
-    #!/usr/bin/env ruby
-    #^syntax detection
-    site 'http://community.opscode.com/api/v1'
-    cookbook 'runit'
-    cookbook 'nginx', :git => 'git://github.com/opscode-cookbooks/nginx.git'
-    EOF
+Edit Cheffile:
+
+```ruby
+#!/usr/bin/env ruby
+#^syntax detection
+site 'http://community.opscode.com/api/v1'
+cookbook 'runit'
+cookbook 'nginx',:git => 'git://github.com/opscode-cookbooks/nginx.git'
+```
 
     librarian-chef install
 
@@ -75,22 +77,22 @@ This command apply the same parameters as ssh command. Fox example, executing wi
 
     knife solo prepare -i key/ssh_key.pem host_username@host
 
-Create node file “vagrant”:
+Create node file vagrant.json:
 
-    cat << EOF >> nodes/vagrant.json
-    {
-      "nginx": {
-        "version": "1.2.3",
-        "default_site_enabled": true,
-        "source": {
-          "modules": ["http_gzip_static_module", "http_ssl_module"]
-          }
-      },
-      "run_list": [
-        "recipe[nginx::source]"
-      ]
+```json
+{
+  "nginx": {
+    "version": "1.2.3",
+    "default_site_enabled": true,
+    "source": {
+      "modules": ["http_gzip_static_module", "http_ssl_module"]
     }
-    EOF
+  },
+  "run_list": [
+    "recipe[nginx::source]"
+  ]
+}
+```
 
 Download vagrant box
 
@@ -99,18 +101,13 @@ Download vagrant box
 
 Edit Vagrantfile to define chef solo:
 
-    cat << EOF >> Vagrantfile
-    # -*- mode: ruby -*-
-    # vi: set ft=ruby :
-    Vagrant::Config.run do |config|
-    # All Vagrant configuration is done here. The most common configuration
-    # options are documented and commented below. For a complete reference,
-    # please see the online documentation at vagrantup.com.
-    # Every Vagrant virtual environment requires a box to build off of.
-    config.vm.box = "precise64"
-    ...
-    VAGRANT_JSON = JSON.parse(Pathname(__FILE__).dirname.join('nodes', 'vagrant.json').read)
-    config.vm.provision :chef_solo do |chef|
+```ruby
+# -*- mode: ruby -*-
+# vi: set ft=ruby:
+Vagrant::Config.run do |config|
+  config.vm.box = "precise64"
+  VAGRANT_JSON = JSON.parse(Pathname(__FILE__).dirname.join('nodes', 'vagrant.json').read)
+  config.vm.provision:chef_solo do |chef|
     chef.cookbooks_path = ["site-cookbooks", "cookbooks"]
     chef.roles_path = "roles"
     chef.data_bags_path = "data_bags"
@@ -121,8 +118,8 @@ Edit Vagrantfile to define chef solo:
     chef.json = VAGRANT_JSON
     # old way
     #VAGRANT_JSON['run_list'].each do |recipe|
-    # chef.add_recipe(recipe)
+      # chef.add_recipe(recipe)
     #end if VAGRANT_JSON['run_list']
-    end
-    ...
-    end
+  end
+end
+```

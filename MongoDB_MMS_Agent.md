@@ -3,9 +3,9 @@ MongoDB_MMS_Agent
 
 [Documentation](https://mms.mongodb.com/help-hosted/v1.2/monitoring/)
 
-MMS Server : monitoring server
-MMS Agent : sonde for mongodb monitoring
-MMS Node : mongodb monitored by MMS Agent
+MMS Server: monitoring server
+MMS Agent: sonde for mongodb monitoring
+MMS Node: mongodb monitored by MMS Agent
 
 Sysctl parameters for MMS Server
 --------------------------------
@@ -47,9 +47,13 @@ Register MMS nodes
 
 Create user on mongod:
 
-    db.addUser( { user:"mms",
-                  pwd:"password",
-                  roles : [ "clusterAdmin", "readAnyDatabase", "dbAdminAnyDatabase" ] } )
+```javascript
+db.addUser( { user:"mms",
+              pwd:"password",
+              roles: [ "clusterAdmin", "readAnyDatabase", "dbAdminAnyDatabase" ]
+            }
+          )
+```
 
 Hardware Monitoring
 -------------------

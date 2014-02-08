@@ -27,7 +27,7 @@ W: go to next string
 
 sort lines:
 
-    :{range}sort u
+   :{range}sort u
 
 Changer character case:
 

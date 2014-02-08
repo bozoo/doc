@@ -28,13 +28,13 @@ Backup $pathToFileToRemove then:
 
 Resolve a merge conflict
 
-Keep remote file :
+Keep remote file:
 
     rm $localConflictFile
     git checkout --theirs $remoteConflictFile
     fit commit -a
 
-Keep local file :
+Keep local file:
 
     git rm $remoteConflictFile
     git add $localConflitFile
@@ -73,8 +73,6 @@ Git config to access my github repo
 Git-achievement
 ---------------
 
-@http://soliloquyforthefallen.net/blog/2011/04/27/git-achievements/
-
     echo "PATH=$PATH:~/git/git-achievements" >> .bash_profile
     echo "alias git=git-achievements" >> .bash_profile
     git config --global achievement.upload "true"
@@ -88,7 +86,7 @@ Git-achievement
 Install Git on CentOS 5
 -----------------------
 
-Git Server :
+Git Server:
 
     yum install git git-daemon
     mkdir -p ${repoGit}.git
@@ -123,7 +121,7 @@ Git Server :
 
     service httpd restart
 
-Cygwin client :
+Cygwin client:
 
     cd d:
     mkdir -p git/sysadmin
