@@ -6,18 +6,18 @@ Add timestamp to history command: `export HISTTIMEFORMAT='%F %T '`
 Bash shortcuts
 --------------
 
-ctl-a: go to begining of line
-ctl-e: go to end of line
-alt-b: move word by word backward
-alt-f: move word by word forward
-ctl-K: cut characters at right of cursor
-ctl-U: cut characters at left of cursor
-ctl-L: clear terminal
-ctl-N: cut the full line
-ctl-W: cut characters at right of cursor (until next space)
-ctl-Y: past cut characters
-ctl-t: inverse the 2 words before cursor
-alt-t: inverse the 2 words after cursor
+ - ctl-a: go to begining of line
+ - ctl-e: go to end of line
+ - alt-b: move word by word backward
+ - alt-f: move word by word forward
+ - ctl-K: cut characters at right of cursor
+ - ctl-U: cut characters at left of cursor
+ - ctl-L: clear terminal
+ - ctl-N: cut the full line
+ - ctl-W: cut characters at right of cursor (until next space)
+ - ctl-Y: past cut characters
+ - ctl-t: inverse the 2 words before cursor
+ - alt-t: inverse the 2 words after cursor
 
 Arguments substitution
 ----------------------
