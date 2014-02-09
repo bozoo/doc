@@ -5,172 +5,90 @@ Virtual Ethernet Adapter: Virtual Ethernet used for internal communication betwe
 
 Shared Ethernet Adapter: Ethernet switch (OSI layer 2) for routing
 
-Show IOS version (AIX VIO OS):
+Show IOS version (AIX VIO OS): `ioslevel`
 
-    ioslevel
+Show AIX embeded in VIOS version: `oem_platform_level`
 
-Show AIX embeded in VIOS version:
+Backup VIOS: `backupios -file /backup_dir/backup_file`
 
-    oem_platform_level
+Open root shell on VIOS: `oem_setup_env`
 
-Backup VIOS:
+Open VIOS shell from root shell: `su - padmin`
 
-    backupios -file /backup_dir/backup_file
+Enable remote admin from NIM server: `remote_management nim_server`
 
-Open root shell on VIOS:
+List softwares installed on VIOS: `lssw`
 
-    oem_setup_env
+Open Virtual Terminal on partition id 1: `mkvt -id 1`
 
-Open VIOS shell from root shell:
+Create VG: `mkvg -vg newvg hdisk0`
 
-    su - padmin
+Create LV: `mklv -lv lv001 1G hdisk1`
 
-Enable remote admin from NIM server:
+List storage pools: `lssp`
 
-    remote_management nim_server
+Create storage pool: `mksp -f storage_pool`
 
-List softwares installed on VIOS:
+Stop VIOS: `shutdown`
 
-    lssw
+Restart VIOS: `shutdown -restart`
 
-Open Virtual Terminal on partition id 1:
+Secure VIOS: `viosecure -level high`
 
-    mkvt -id 1
+Show Security level of VIOS: `viosecure -view`
 
-Create VG:
+Enable VIOS firewall: `viosecure -firewall on`
 
-    mkvg -vg newvg hdisk0
-
-Create LV:
-
-    mklv -lv lv001 1G hdisk1
-
-List storage pools:
-
-    lssp
-
-Create storage pool:
-
-    mksp -f storage_pool
-
-Stop VIOS:
-
-    shutdown
-
-Restart VIOS:
-
-    shutdown -restart
-
-Secure VIOS:
-
-    viosecure -level high
-
-Show Security level of VIOS:
-
-    viosecure -view
-
-Enable VIOS firewall:
-
-    viosecure -firewall on
-
-Show Firewall rules:
-
-    viosecure -firewall view
+Show Firewall rules: `viosecure -firewall view`
 
 Devices Management
 ------------------
 
-List devices:
+List devices: `lsdev`
 
-    lsdev
+List virtual devices: `lsdev -virtual`
 
-List virtual devices:
+List slots: `lsdev -slots`
 
-    lsdev -virtual
+Show disks and locations: `lsdev -type disk -field name physloc`
 
-List slots:
+List SCSI or FC paths: `lspath`
 
-    lsdev -slots
+Disable path between a disk and a FC: `chpath -dev hdisk1 -pdev fscsi0 -op disable`
 
-Show disks and locations:
+Configure device: `cfgdev -dev Name`
 
-    lsdev -type disk -field name physloc
+Remove device: `rmdev -dev Name`
 
-List SCSI or FC paths:
+Create virtual device from existing LV: `mkvdev -vdev lv00 -vadapter vhost0`
 
-    lspath
+Create virtual device from physical disk: `mkvdev -vdev hdisk2 -vadapter vhost1`
 
-Disable path between a disk and a FC:
+remove all virtual devices using specific LV: `rmvdev -vdev lv01`
 
-    chpath -dev hdisk1 -pdev fscsi0 -op disable
+List virtual devices using a specific virtual adapter: `lsmap -vadapter vhost0`
 
-Configure device:
+Create SEA (Shared Ethernet Adapter) from a physical network adapter: `mkvdev -sea ent4 -vadapter ent6,ent7 -default ent6 -defaultid 8`
 
-    cfgdev -dev Name
+List SEA and Ethernet adapters: `lsmap -all -net`
 
-Remove device:
+List physical adapter and etherchannel available for SEA creation: `lsdev -type ent4sea`
 
-    rmdev -dev Name
-
-Create virtual device from existing LV:
-
-    mkvdev -vdev lv00 -vadapter vhost0
-
-Create virtual device from physical disk:
-
-    mkvdev -vdev hdisk2 -vadapter vhost1
-
-remove all virtual devices using specific LV:
-
-    rmvdev -vdev lv01
-
-List virtual devices using a specific virtual adapter:
-
-    lsmap -vadapter vhost0
-
-Create SEA (Shared Ethernet Adapter) from a physical network adapter:
-
-    mkvdev -sea ent4 -vadapter ent6,ent7 -default ent6 -defaultid 8
-
-List SEA and Ethernet adapters:
-
-    lsmap -all -net
-
-List physical adapter and etherchannel available for SEA creation:
-
-    lsdev -type ent4sea
-
-List all adapters which can have an IP address:
-
-    lsdev -type ent4ip
+List all adapters which can have an IP address: `lsdev -type ent4ip`
 
 Network Management
 ------------------
 
-Configure IP on a NIC:
+Configure IP on a NIC: `mktcpip -hostname name -inetaddr 192.168.1.2 -interface en2 -netmask 255.255.255.0 -gateway 192.168.1.1 -nsrvdomain example.com -start`
 
-    mktcpip -hostname name -inetaddr 192.168.1.2 -interface en2 -netmask 255.255.255.0 -gateway 192.168.1.1 -nsrvdomain example.com -start
+Show VIOS IP configuration: `lstcpip`
 
-Show VIOS IP configuration:
+Show routes: `lstcpip -routtable`
 
-    lstcpip
+List ethernet adapters: `lstcpip -adapters`
 
-Show routes:
+Liste hosts mapped on specific IP: `hostmap -ls`
 
-    lstcpip -routtable
+Map host on IP: `hostmap -addr 192.168.2.2 -hosts server1`
 
-List ethernet adapters:
-
-    lstcpip -adapters
-
-Liste hosts mapped on specific IP:
-
-    hostmap -ls
-
-Map host on IP:
-
-    hostmap -addr 192.168.2.2 -hosts server1
-
-Allow IP Forwarding (like a router):
-
-    optimizenet –set ipforwarding=1
+Allow IP Forwarding (like a router): `optimizenet –set ipforwarding=1`

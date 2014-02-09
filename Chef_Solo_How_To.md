@@ -1,9 +1,7 @@
 CHEF SOLO HOW TO
 ================
 
-Create Chef kitchen folder:
-
-    mkdir chef-solo-example && cd chef-solo-example
+Create Chef kitchen folder: `mkdir chef-solo-example && cd chef-solo-example`
 
 Edit Gemfile to install gems with [Bundler](http://bundler.io/):
 

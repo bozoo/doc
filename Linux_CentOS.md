@@ -1,9 +1,7 @@
 LINUX CENTOS
 ============
 
-Packages to install:
-
-    yum install open-ssh nmon vim nmap sysstat wget nc
+Packages to install: `yum install open-ssh nmon vim nmap sysstat wget nc`
 
 CentOS base install for virtualization
 --------------------------------------

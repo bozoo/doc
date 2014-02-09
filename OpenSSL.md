@@ -31,32 +31,17 @@ OpenSSL Commands to Convert SSL Certificates on Your Machine
 
 It is highly recommended that you convert to and from .pfx files on your own machine using OpenSSL so you can keep the private key there. Use the following OpenSSL commands to convert SSL certificate to different formats on your own machine:
 
-Convert PEM to DER:
+Convert PEM to DER: `openssl x509 -outform der -in certificate.pem -out certificate.der`
 
-    openssl x509 -outform der -in certificate.pem -out certificate.der
+Convert PEM to P7B: `openssl crl2pkcs7 -nocrl -certfile certificate.cer -out certificate.p7b -certfile CACert.cer`
 
-Convert PEM to P7B:
+Convert PEM to PFX: `openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt -certfile CACert.crt`
 
-    openssl crl2pkcs7 -nocrl -certfile certificate.cer -out certificate.p7b -certfile CACert.cer
+Convert DER to PEM: `openssl x509 -inform der -in certificate.cer -out certificate.pem`
 
-Convert PEM to PFX:
+Convert P7B to PEM: `openssl pkcs7 -print_certs -in certificate.p7b -out certificate.cer`
 
-    openssl pkcs12 -export -out certificate.pfx -inkey privateKey.key -in certificate.crt -certfile CACert.crt
+Convert P7B to PFX: `openssl pkcs7 -print_certs -in certificate.p7b -out certificate.cer`
+                 or `openssl pkcs12 -export -in certificate.cer -inkey privateKey.key -out certificate.pfx -certfile CACert.cer`
 
-Convert DER to PEM:
-
-    openssl x509 -inform der -in certificate.cer -out certificate.pem
-
-Convert P7B to PEM:
-
-    openssl pkcs7 -print_certs -in certificate.p7b -out certificate.cer
-
-Convert P7B to PFX:
-
-    openssl pkcs7 -print_certs -in certificate.p7b -out certificate.cer
-
-    openssl pkcs12 -export -in certificate.cer -inkey privateKey.key -out certificate.pfx -certfile CACert.cer
-
-Convert PFX to PEM:
-
-    openssl pkcs12 -in certificate.pfx -out certificate.cer -nodes
+Convert PFX to PEM: `openssl pkcs12 -in certificate.pfx -out certificate.cer -nodes`

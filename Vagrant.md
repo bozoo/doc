@@ -10,18 +10,8 @@ Create CentOS vagrant box
 4. create user named vagrant with password "vagrant"
 5. set hostname to vagrant-centos64
 6. install and enable openssh-server
-7. shutdown vm and run:
-
-    ```
-    VBoxManage modifyvm "vagrant-centos64" --natpf1 "guestssh,tcp,,2222,,22"
-    ```
-
-8. start vm and connect it by ssh:
-
-    ```
-    ssh -p 2222 root@127.0.0.1
-    ```
-
+7. shutdown vm and run: `VBoxManage modifyvm "vagrant-centos64" --natpf1 "guestssh,tcp,,2222,,22"`
+8. start vm and connect it by ssh: `ssh -p 2222 root@127.0.0.1`
 9. update packages
 10. install wget gcc bzip2 make kernel-devel
 11. install guest additions
@@ -34,11 +24,7 @@ Create CentOS vagrant box
     %admin          ALL=(ALL)       NOPASSWD: ALL
     ```
 
-14. add vagrant ssh key:
-
-    ```
-    curl -k https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub > /home/vagrant/.ssh/authorized_keys
-    ```
+14. add vagrant ssh key: `curl -k https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub > /home/vagrant/.ssh/authorized_keys`
 
 15. edit /etc/sysconfig/network-scripts/ifcfg-eth0:
 
@@ -50,12 +36,7 @@ Create CentOS vagrant box
     ```
 
 16. edit /etc/udev/rules.d/70-persistent-net.rules and comment HWADDR line
-17. clean yum, /tmp and /var/tmp
-
-    ```
-    yum clean all
-    rm -fr /tmp/* /var/tmp/*
-    ```
+17. clean yum, /tmp and /var/tmp: `yum clean all && rm -fr /tmp/* /var/tmp/*`
 
 18. shutdown vm and package it:
 

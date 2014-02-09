@@ -79,9 +79,7 @@ NIM master configuration
    - `smit nim_mkmac`
    - or `nim –o define –t standalone –a if1=”net_10_1_1 lpar55 0 ent0” LPAR55`
 
-1. Check NIM resources NIM:
-
-    lsnim -l
+1. Check NIM resources NIM: `lsnim -l`
 
 Install NIM client
 ------------------
@@ -97,64 +95,36 @@ Install NIM client
 Add filesets to spot
 --------------------
 
-1. List spots on NIM master:
+1. List spots on NIM master: `lsnim -t spot`
 
-    `lsnim -t spot`
+1. List lpp_source: `lsnim -t lpp_source`
 
-1. List lpp_source:
+1. Check if fileset is in the spot: `nim -o showres <SPOT_NIM> | grep -i <FILESET>`
 
-    `lsnim -t lpp_source`
+1. Check if fileset is in lpp_source: `nim -o showres <LPPSOURCE_NIM> | grep -i <FILESET>`
 
-1. Check if fileset is in the spot:
-
-    `nim -o showres <SPOT_NIM> | grep -i <FILESET>`
-
-1. Check if fileset is in lpp _source:
-
-    `nim -o showres <LPPSOURCE_NIM> | grep -i <FILESET>`
-
-1. Install fileset in spot from lpp_source:
-
-    `nim -o cust -a filesets=<FILESET> -a lpp_source=<LPPSOURCE_NIM> <SPOT_NIM>`
+1. Install fileset in spot from lpp_source: `nim -o cust -a filesets=<FILESET> -a lpp_source=<LPPSOURCE_NIM> <SPOT_NIM>`
 
 Check NIM resources
 -------------------
 
-1. List NIM resources NIM:
+1. List NIM resources NIM: `lsnim -l`
 
-    `lsnim -l`
+1. List machines: `lsnim -c machines`
 
-1. List machines:
-
-    `lsnim -c machines`
-
-1. List other NIM resources:
-
-    `lsnim -t spot / lsnim -t lpp_sources / lsnim -t mksysb / lsnim -c networks`
+1. List other NIM resources: `lsnim -t spot / lsnim -t lpp_sources / lsnim -t mksysb / lsnim -c networks`
 
 NIM Maintenance
 ---------------
 
-Check NIM master:
+Check NIM master: `lsnim -l client, tail -l /etc/bootptab, ls -l /tftpboot, showmount -e`
 
-    lsnim -l client, tail -l /etc/bootptab, ls -l /tftpboot, showmount -e
+Recreate /etc/niminfo file on NIM master: `nimconfig –r`
 
-Recreate /etc/niminfo file on NIM master:
+Recreate /etc/niminfo in NIM client: `niminit –a master=<MASTER> -a name=<NAME>`
 
-    nimconfig –r
+Check lpp_source: `nim –Fo check <LPP_SOURCE>`
 
-Recreate /etc/niminfo in NIM client:
+Check spot: `nim -o check <SPOT>`
 
-    niminit –a master=<MASTER> -a name=<NAME>
-
-Check lpp_source:
-
-    nim –Fo check <LPP_SOURCE>
-
-Check spot:
-
-    nim -o check <SPOT>
-
-Backup NIM DB:
-
-    smit nim_backup_db
+Backup NIM DB: `smit nim_backup_db`

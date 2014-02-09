@@ -10,9 +10,7 @@ On AIX password must be set to connect with SSH key (even if it isn't used)
 Hardware
 --------
 
-Upgrade Firmware:
-
-    invscout
+Upgrade Firmware: `invscout`
 
 LVM
 ---
@@ -20,25 +18,15 @@ LVM
  - VGDA (Volume group descriptor area): Metadatas LVM on PV
  - LVCB (Logical volume control block): Metadatas LVM on LV
 
-Create PVID of a disk:
+Create PVID of a disk: `chdev -l hdisk3 -a pv=yes`
 
-    chdev -l hdisk3 -a pv=yes
+Remove PVID of a disk: `chdev -l hdisk3 -a pv=clear`
 
-Remove PVID of a disk:
+Lock new PP allocation on a PV: `chpv -an hdisk2`
 
-    chdev -l hdisk3 -a pv=clear
+Change disk state to unavailable: `chpv -vr hdisk2`
 
-Lock new PP allocation on a PV:
-
-    chpv -an hdisk2
-
-Change disk state to unavailable:
-
-    chpv -vr hdisk2
-
-Remove disk boot record:
-
-    chpv -c hdisk1
+Remove disk boot record: `chpv -c hdisk1`
 
 increase max LV allocation:
 
@@ -63,32 +51,20 @@ Create FS:
     mount <mnt_dir>
     chfs -a size=<size> <mnt_dir>
 
-Show disk size:
-
-    lsattr -El hdiskX
+Show disk size: `lsattr -El hdiskX`
 
 Print Management
 ----------------
 
-Start print queue:
+Start print queue: `enq -U –P $IMP`
 
-    enq -U –P $IMP
+Stop print queue: `enq -U –P $IMP`
 
-Stop print queue:
+Cancel print job: `enq -P $IMP -x $JOB`
 
-    enq -U –P $IMP
+Show all print queues status: `enq -q -A`
 
-Cancel print job:
-
-    enq -P $IMP -x $JOB
-
-Show all print queues status:
-
-    enq -q -A
-
-Show specific print queue status:
-
-    enq -q -P $IMP
+Show specific print queue status: `enq -q -P $IMP`
 
 Network Management
 ------------------
@@ -98,13 +74,9 @@ Remove duplicate route:
     lsattr -El inet0
     chdev -l inet0 -a delroute="net,-hopcount,0,,0,X.X.X.X"
 
-Check speed and duplex for a NIC:
+Check speed and duplex for a NIC: `entstat -d entX | grep -i speed`
 
-    entstat -d entX | grep -i speed
-
-print MAC address for a NIC:
-
-    lscfg -vpl ent0
+print MAC address for a NIC: `lscfg -vpl ent0`
 
 Users Management
 ----------------
@@ -118,29 +90,19 @@ Change max length of username:
 AIO Servers Management
 ----------------------
 
-Show min/max AIO Servers numbers:
+Show min/max AIO Servers numbers: `lsattr -El aio0`
 
-    lsattr -El aio0
+Show number of AIO Servers process: `ps -ek | grep aioserver | wc -l`
 
-Show number of AIO Servers process:
-
-    ps -ek | grep aioserver | wc -l
-
-Change AIO servers number:
-
-    chdev aio0
+Change AIO servers number: `chdev aio0`
 
 
 NFS Management
 --------------
 
-Use AIX NFS client with Linux NFS server:
+Use AIX NFS client with Linux NFS server: `nfso -p -o nfs_use_reserved_ports=1`
 
-    nfso -p -o nfs_use_reserved_ports=1
-
-Mount NFS share:
-
-    mknfsmnt -f /path/to/mount -d /remote/path -h nfsserver -M sys -B -A -t rw -w bg -Y -Z -X -H
+Mount NFS share: `mknfsmnt -f /path/to/mount -d /remote/path -h nfsserver -M sys -B -A -t rw -w bg -Y -Z -X -H`
 
 Other
 -----
@@ -150,16 +112,12 @@ Activation fullcore (for coredump):
     chdev -l sys0 -a fullcore=true
     lsattr -El sys0 | grep fullcore
 
-Show $user@$server in SSH window title:
-
-    echo 'echo "\\033]0;$USER@`hostname`\\007"' >> /etc/profile
+Show $user@$server in SSH window title: `echo 'echo "\\033]0;$USER@`hostname`\\007"' >> /etc/profile`
 
 Maintenance
 -----------
 
-Use alternate rootvg on a second disk:
-
-    alt_disk_copy -B -d hdisk1
+Use alternate rootvg on a second disk: `alt_disk_copy -B -d hdisk1`
 
 
 
@@ -206,7 +164,7 @@ Best Practices
 
 1. Create mksysb after install and before servers upgrade
 
-1. Configure /etc/profile to show $user@$server in SSH window title:
+1. Configure /etc/profile to show `$user@$server` in SSH window title:
 
     ```
     echo 'echo "\\033]0;$USER@`hostname`\\007"' >> /etc/profile

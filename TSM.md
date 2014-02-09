@@ -1,9 +1,7 @@
 TSM
 ===
 
-Format Output of dsmadmc command:
-
-    dsmadmc [-tabd] [-commad] [-dataonly=yes]
+Format Output of dsmadmc command: `dsmadmc [-tabd] [-commad] [-dataonly=yes]`
 
 Query SQL TSM
 -------------

@@ -1,7 +1,8 @@
 VIM
 ===
 
-Keyboard Shortcuts:
+Keyboard Shortcuts
+------------------
 
 G: go to first line of file
 g: go to last line of file
@@ -25,9 +26,7 @@ W: go to next string
 #: go to previous occurrence of the selected word
 %: go to next bracket
 
-sort lines:
-
-   :{range}sort u
+sort lines: `:{range}sort u`
 
 Changer character case:
 

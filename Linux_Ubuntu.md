@@ -1,9 +1,7 @@
 LINUX UBUNTU
 ============
 
-Package to install:
-
-    apt-get install open-ssh nmon vim nmap sysstat
+Package to install: `apt-get install open-ssh nmon vim nmap sysstat`
 
 Remove old kernels:
 

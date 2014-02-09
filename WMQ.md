@@ -1,29 +1,17 @@
 WMQ
 ===
 
-Start instance:
+Start instance: `strmqm -x <QMGR>`
 
-    strmqm -x <QMGR>
+Stop instance: `endmqm <QMGR>`
 
-Stop instance:
+Show QMGR status: `dspmq -x -o all`
 
-    endmqm <QMGR>
+Create QMGR: `crtmqm -q <QMGR>` (-lc circular logs or -ll linears logs)
 
-Show QMGR status:
+Delete QMGR: `dltmqm <QMGR>`
 
-    dspmq -x -o all
-
-Create QMGR:
-
-    crtmqm -q <QMGR> (-lc circular logs or -ll linears logs)
-
-Delete QMGR:
-
-    dltmqm <QMGR>
-
-Kill MQM:
-
-    ps -ef | grep amq
+Kill MQM: `ps -ef | grep amq`
 
 Order to kill process:
 
@@ -39,13 +27,9 @@ Order to kill process:
 1. amqzdmaa
 1. amqpcsea
 
-Run commands on QMGR:
+Run commands on QMGR: `runmqsc <QMGR>`
 
-    runmqsc <QMGR>
-
-Dry Run commands on QMGR:
-
-    runmqsc -v <QMGR>
+Dry Run commands on QMGR: `runmqsc -v <QMGR>`
 
 Define Queue Local:
 
@@ -56,13 +40,9 @@ Define Queue Local:
                           maxdepth(1000) maxmsgl(2000) +
                           npmclass(hish)
 
-Define queue with the same parameters of an other queue:
+Define queue with the same parameters of an other queue: `> def ql(XXX) like(MY_QUEUE)`
 
-    > def ql(XXX) like(MY_QUEUE)
-
-Define queue with default queue parameters:
-
-    > def ql(XXX)
+Define queue with default queue parameters: `> def ql(XXX)`
 
 Display queue:
 
@@ -70,173 +50,99 @@ Display queue:
     > dis q(YYY) maxdepth curdepth
     > dis q(SYSTEM*)
 
-Display QMGR:
+Display QMGR: `> dis QMGR`
 
-    > dis QMGR
+Define Queue Alias: `> def qa(AAA) targq(XXX)`
 
-Define Queue Alias:
+Define Queue Remote: `> def qr(BBB) rname(YYY) rqmname(QMGR2)`
 
-    > def qa(AAA) targq(XXX)
+Define Queue Template: `> def qmodel(ANSQ) deftype(TEMPDYN)`
 
-Define Queue Remote:
+Disable Put on QL: `> alter ql5XXX) put(disabled)`
 
-    > def qr(BBB) rname(YYY) rqmname(QMGR2)
+Update Target Q for QA: `> alter qa(AAA) targq(YYY)`
 
-Define Queue Template:
-
-    > def qmodel(ANSQ) deftype(TEMPDYN)
-
-Disable Put on QL:
-
-    > alter ql5XXX) put(disabled)
-
-Update Target Q for QA:
-
-    > alter qa(AAA) targq(YYY)
-
-Change Description of QMGR:
-
-    > alter qmgr descr('New description')
+Change Description of QMGR: `> alter qmgr descr('New description')`
 
 Delete QL or QR:
 
     > del ql(XXX)
     > del qr(BBB)
 
-Delete all message on a QL:
+Delete all message on a QL: `> clear ql(XXX)`
 
-    > clear ql(XXX)
-
-Stop MQM:
-
-    endmqm -c QMGR
+Stop MQM: `endmqm -c QMGR`
 
  - -c: controlled
  - -w: waiting
  - -i: immediate
  - -p: preemptive
 
-Put Message:
+Put Message: `amqsput QNAME [QMGR]`
 
-    amqsput QNAME [QMGR]
+Get Message: `amqsget QNAME [QMGR]`
 
-Get Message:
+Browse Message without delete: `amqsbcg QNAME [QMGR]`
 
-    amqsget QNAME [QMGR]
+Browse Message and display data only: `amqsgbr QNAME [QMGR]`
 
-Browse Message without delete:
+Backup QL: `rcdmqimg -m $QMGR -t qlocal $QL`
 
-    amqsbcg QNAME [QMGR]
+Recover QL: `rcrmqobj -m $QMGR -t qlocal $QL`
 
-Browse Message and display data only:
+Dump logs: `dmpmqlog`
 
-    amqsgbr QNAME [QMGR]
+Test Chl: `> ping channel($CHL)`
 
-Backup QL:
+Define Chl SDR: `> def chl($CHL) chltype(SDR) trptype(TCP) conname(${IP Chl RCVR}) xmitq($xmitq)`
 
-    rcdmqimg -m $QMGR -t qlocal $QL
+Define Chl RCVR: `> def chl($CHL) chltype(RCVR) trptype(TCP)`
 
-Recover QL:
+Start chl: `> start channel($CHL)`
 
-    rcrmqobj -m $QMGR -t qlocal $QL
+Control chl: `runmqchl -c $CHL`
 
-Dump logs:
-
-    dmpmqlog
-
-Test Chl:
-
-    > ping channel($CHL)
-
-Define Chl SDR:
-
-    > def chl($CHL) chltype(SDR) trptype(TCP) conname(${IP Chl RCVR}) xmitq($xmitq)
-
-Define Chl RCVR:
-
-    > def chl($CHL) chltype(RCVR) trptype(TCP)
-
-Start chl:
-
-    > start channel($CHL)
-
-Control chl:
-
-    runmqchl -c $CHL
-
-Define xmitq:
-
-    > def ql($QL) usage(XMITQ)
+Define xmitq: `> def ql($QL) usage(XMITQ)`
 
 Define Listener:
 
     > def listener(LISTENER.TCP) trptype(TCP) port(1414) control(QMGR) replace
     > start listener(LISTENER.TCP)
 
-Start Listener:
+Start Listener: `runmqlsr`
 
-    runmqlsr
+Stop Listener: `endmqlsr`
 
-Stop Listener:
+Reinit Chl Sequence number (if there is issue following a QMGR recovery): `> reset channel($CHL)`
 
-    endmqlsr
+Change msg number before sync point: `> alter channel($CHL) batchsz(50)`
 
-Reinit Chl Sequence number (if there is issue following a QMGR recovery):
+Display Chl Status: `> dis chstatus($CHL)`
 
-    > reset channel($CHL)
+Define QR: `> def qr($QR) rname($RQL) rqmname($RQMGR) xmitq($XMITQ)`
 
-Change msg number before sync point:
+Display PID Process using a QL: `> dis qs($QL) type(handle) pid`
 
-    > alter channel($CHL) batchsz(50)
+Check Commit of msg in QL and infos of Process atteched to QL: `> dis qstatus($QL) type(queue) all`
 
-Display Chl Status:
 
-    > dis chstatus($CHL)
+Cluster
+-------
 
-Define QR:
+Add a cluster member: `> alter qmgr repos($CLUSTER)`
 
-    > def qr($QR) rname($RQL) rqmname($RQMGR) xmitq($XMITQ)
+Define Cluster chl RCVR: `> def chl(TO.$QMGR) chltype(CLUSRCVR) trptype(TCP) conname($LocaleIP) cluster($CLUSTER)`
 
-Add a cluster member:
+Define Cluster chl SDR: `> def chl(TO.$QMGR) chltype(CLUSSDR) trptype(TCP) conname($RQMGRIP) cluster($CLUSTER)`
 
-    > alter qmgr repos($CLUSTER)
+Define Cluster QL: `> def ql($QL) cluster($CLUSTER)`
 
-Define Cluster chl RCVR:
+Verify Cluster: `> dis clusqmgr(*)`
 
-    > def chl(TO.$QMGR) chltype(CLUSRCVR) trptype(TCP) conname($LocaleIP) cluster($CLUSTER)
+Remove QMGR from Cluster: `> suspend qmgr`
 
-Define Cluster chl SDR:
+Re-add QMGR to Cluster: `> resume qmgr`
 
-    > def chl(TO.$QMGR) chltype(CLUSSDR) trptype(TCP) conname($RQMGRIP) cluster($CLUSTER)
+Rebuilt Cluster obj from full repos: `> refresh cluster`
 
-Define Cluster QL:
-
-    > def ql($QL) cluster($CLUSTER)
-
-Verify Cluster:
-
-    > dis clusqmgr(*)
-
-Remove QMGR from Cluster:
-
-    > suspend qmgr
-
-Re-add QMGR to Cluster:
-
-    > resume qmgr
-
-Rebuilt Cluster obj from full repos:
-
-    > refresh cluster
-
-Remove QMGR from Cluster forced from Full Repos:
-
-    > reset cluster
-
-Display PID Process using a QL:
-
-    > dis qs($QL) type(handle) pid
-
-Check Commit of msg in QL and infos of Process atteched to QL:
-
-    > dis qstatus($QL) type(queue) all
+Remove QMGR from Cluster forced from Full Repos: `> reset cluster`

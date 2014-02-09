@@ -12,6 +12,7 @@ Prerequisites:
 Directories:
 
 images dir: /var/lib/libvirt/images
+
 config dir: /etc/libvirt/qemu/
 
 Tools
@@ -19,14 +20,17 @@ Tools
 
  - virsh commands:
 
-List started VM: virsh list
-Start VM: virsh create ${VM}.xml # ${VM}.xml: VM config file
-           virsh start ${VM}
-Stop VM (forced): virsh destroy ${VM}
-Stop VM (clean): virsh shutdown ${VM}
-Show VM info: virsh dominfo ${VM}
+List started VM: `virsh list`
 
-Connect to VM: virsh console ${VM}
+Start VM: `virsh create ${VM}.xml && virsh start ${VM}` (# )${VM}.xml: VM config file)
+
+Stop VM (forced): `virsh destroy ${VM}`
+
+Stop VM (clean): `virsh shutdown ${VM}`
+
+Show VM info: `virsh dominfo ${VM}`
+
+Connect to VM: `virsh console ${VM}`
 
 escape character:
 - on azerty: CTRL + ALTGR + 8
@@ -34,7 +38,7 @@ escape character:
 
  - qemu-img commands:
 
-Convert IMG: qemu-img convert -c -f raw -O qcow2 file.img file.qcow2
+Convert IMG: `qemu-img convert -c -f raw -O qcow2 file.img file.qcow2`
 
  - Other tools
 
@@ -60,15 +64,13 @@ Add the following XML in domain's XML (using "virsh edit")
 
 Edit Grub config
 
-on CentOS:
-
-    add "console=ttyS0,115200" to /boot/grub/grub.conf
+on CentOS: add `console=ttyS0,115200` to /boot/grub/grub.conf
 
 on Debian:
 
-    uncomment line "T0:23:respawn:/sbin/getty -L ttyS0 9600 vt100" in /etc/inittab
-    add GRUB_CMDLINE_LINUX="console=ttyS0" to /etc/default/grub
-    update-grub
+ - uncomment line `T0:23:respawn:/sbin/getty -L ttyS0 9600 vt100` in /etc/inittab
+ - add `GRUB_CMDLINE_LINUX="console=ttyS0"` to /etc/default/grub
+ - `update-grub`
 
 Configure Network Bridge
 
@@ -84,6 +86,4 @@ Configure Network Bridge
         bridge_fd       0
     EOF
 
-Clone VM
-
-    virt-clone -o _centos6 -n centos601 -f /var/lib/libvirt/images/centos601.qcow2
+Clone VM: `virt-clone -o _centos6 -n centos601 -f /var/lib/libvirt/images/centos601.qcow2`

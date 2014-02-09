@@ -1,21 +1,13 @@
 GIT
 ===
 
-Clone a git repo
+Clone a git repo: `git clone https://github.com/$userName/$repoGit`
 
-    git clone https://github.com/$userName/$repoGit
+Clone a git repo in $repoDir: `git clone https://github.com/$userName/$repoGit $repoDir`
 
-Clone a git repo in $repoDir
+Save current working git: `git stash`
 
-    git clone https://github.com/$userName/$repoGit $repoDir
-
-Save current working git
-
-    git stash
-
-Configure proxy for git
-
-    git config [--global] http.proxy http://user:pass@proxyhost:proxyport
+Configure proxy for git: `git config [--global] http.proxy http://user:pass@proxyhost:proxyport`
 
 Remove sensitive data from git
 ------------------------------

@@ -30,12 +30,7 @@ Chef server's hostname need to be FQDN
     chef-server-ctl reconfigure
     chef-server-ctl test
 
-Configure admin account
-
-    firefox https://$serverChef
-
-Copy admin pubkey and private key
-
+Configure admin account by connecting to webui https://$serverChef then copy admin pubkey and private key
 
 Install Chef client
 

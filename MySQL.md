@@ -1,17 +1,11 @@
 MYSQL
 =====
 
-Secure MySQL after install
+Secure MySQL after install: `/usr/bin/mysql_secure_installation`
 
-    /usr/bin/mysql_secure_installation
+Set root password: `mysqladmin -u root password YOURNEWPASSWORD`
 
-Set root password
-
-    mysqladmin -u root password YOURNEWPASSWORD
-
-Ping mysql
-
-    mysqladmin -u root -p ping
+Ping mysql: `mysqladmin -u root -p ping`
 
 Check version
 
@@ -57,35 +51,25 @@ or
     | Com_alter_tablespace                     | 0           |
     +------------------------------------------+-------------+
 
-Show MySQL variables
+Show MySQL variables: `mysqladmin  -u root -p variables`
 
-    mysqladmin  -u root -p variables
+Show running process: `mysqladmin -u root -p processlist`
 
-Show running process
-
-    mysqladmin -u root -p processlist
-
-Kill running process
-
-    mysqladmin -u root -p kill $idProcess
+Kill running process: `mysqladmin -u root -p kill $idProcess`
 
 Create / Drop database
 
     mysqladmin -u root -p create $databaseName
     mysqladmin -u root -p drop $databaseName
 
-Shutdown MySQL
-
-    mysqladmin -u root -p shutdown
+Shutdown MySQL: `mysqladmin -u root -p shutdown`
 
 Stop / Start replication
 
     mysqladmin  -u root -p start-slave
     mysqladmin  -u root -p stop-slave
 
-Set MySQL logs to debug
-
-    mysqladmin  -u root -p debug
+Set MySQL logs to debug: `mysqladmin  -u root -p debug`
 
 Show databases
 
@@ -160,9 +144,7 @@ Change password for non-root user:
 
 Change root password:
 
-1. Stop MySQL and start it in safe mode
-
-    /usr/bin/safe_mysqld --skip-grant-tables&
+1. Stop MySQL and start it in safe mode: `/usr/bin/safe_mysqld --skip-grant-tables&`
 
 2. Connect to mysql:
 
@@ -245,13 +227,9 @@ Backup MySQL DB
     --no-data: backup only db structure without data
     --no-create-info: backup data only
 
-Restore MySQL DB on an empty DB
+Restore MySQL DB on an empty DB: `mysql -u [username] –p[password] [database_name] < [dump_file.sql]`
 
-    mysql -u [username] –p[password] [database_name] < [dump_file.sql]
-
-Restore MySQL DB on a existing DB
-
-    mysqlimport -u [username] –p[password] [database_name] < [dump_file.sql]
+Restore MySQL DB on a existing DB: mysqlimport -u [username] –p[password] [database_name] < [dump_file.sql]`
 
 Replication
 -----------
