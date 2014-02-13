@@ -4,7 +4,7 @@ MACOS X
 Homebrew
 --------
 
-Install Xcode et Xcode Commandline Tools: `ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"`
+Install Xcode and Xcode Commandline Tools: `ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"`
 
 Install Git: `brew install git`
 
@@ -25,7 +25,7 @@ Install SSHFS: `brew install sshfs`
 
 Install Tmux: `brew install tmux`
 
-tmux -CC pour intégration avec iTerm2
+tmux -CC for iTerm2 integration
 
 Divers
 ------
