@@ -1,6 +1,8 @@
 MONGODB
 =======
 
+Stop Mongos: `mongos> db.shutdownServer()`
+
 Authentication
 --------------
 
