@@ -45,6 +45,18 @@ Stop Quicktime and Preview from Auto-Restoring What You Left Open:
 
 Prevent Your Mac from Sleeping: `caffeinate -t 3600`
 
+Use text completion:
+
+1. Go to "System Preferences"
+1. Select "Language and text", then select "Text"
+
+Uses cases:
+ - replace "@mail" by your email
+ - replace "@name" by your name
+ - replace "@phone" by your number
+
+Insert selected text in a note: Select the text and press `Command + Shift + Y`
+
 Finder
 ------
 
@@ -53,6 +65,19 @@ Show hidden files in finder: `defaults write com.apple.finder AppleShowAllFiles 
 Disable/Enable Window animation: `defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false # or true`
 
 Show full path in finder: `defaults write com.apple.finder _FXShowPosixPathInTitle -bool true`
+
+Disable .DSTORE file creation in network shares: `defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true`
+
+Move a file instead of copy: Press "Command" while moving the file with the mouse
+
+Move many files in a new directory:
+
+1. Select files
+1. Open Contextual Menu
+1. Select "New directory with the selection"
+
+Show Library dir in Finder: `chflags nohidden ~/Library`
+
 
 Finder Quick Look
 -----------------
@@ -76,6 +101,23 @@ Set a Fast Dock Display Animation: `defaults write com.apple.dock autohide-time-
 Restore Default Animation Speed: `defaults delete com.apple.dock autohide-time-modifier;killall Dock`
 
 Get Rid of the Delay When Showing and Hiding the Dock: `defaults write com.apple.Dock autohide-delay -float 0 && killall Dock`
+
+Mission Control
+---------------
+
+Change Mission Control screen:
+
+1. Open file /System/Library/CoreServices/Dock.app
+1. Go to folder Content/Resources
+1. Rename file defaultdesktop.png to defaultdesktop-old.png
+
+The default Desktop screen become Mission Control Screen
+
+To choose the screen file:
+
+1. Go to /System/Library/CoreServices/
+1. Rename DefaultDesktop.jpg to DefaultDesktop-old.jpg
+1. Replace file DefaultDesktop.jpg by your file.
 
 Keepassx
 --------
