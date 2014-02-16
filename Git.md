@@ -113,7 +113,7 @@ Git Server:
 
     service httpd restart
 
-Cygwin client:
+Git client:
 
     cd d:
     mkdir -p git/sysadmin
@@ -127,3 +127,30 @@ Cygwin client:
     git config --global user.email $userMail
     git commit --amend --reset-author
     git push origin master
+
+Backup Git repos with Dropbox
+-----------------------------
+
+Storing Git repos in Dropbox synchronized can create corruption.
+Git repos need to be stored outside Dropbox folder!
+
+On the other hand, we can create a backup repos inside Dropbox folder.
+
+Create a bare repository Git in dropbox folder:
+
+    cd ~/Dropbox/REPOS
+    git init --bare PROJET.git
+
+It's important to use .git suffix for the repository name!
+
+Go to the initial Git repos and add a remote for the backup repos:
+
+    cd DIRPROJET
+    git remote add dropbox ~/Dropbox/REPOS/PROJET.git
+
+Push to the backup repos:
+
+    cd DIRPROJET
+    git push dropbox master
+
+After each commit, push to the backup repos

@@ -57,6 +57,14 @@ Uses cases:
 
 Insert selected text in a note: Select the text and press `Command + Shift + Y`
 
+Copy from Terminal to MacOSX clipboard: `echo "test" | pbcopy`
+
+Paste from MacOSX clipboard to Terminal: `pbpaste`
+
+List all downloaded files on MacOSX: `sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'select LSQuarantineDataURLString from LSQuarantineEvent' | sort`
+
+Delete downloaded files list: `sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'`
+
 Finder
 ------
 
@@ -77,7 +85,6 @@ Move many files in a new directory:
 1. Select "New directory with the selection"
 
 Show Library dir in Finder: `chflags nohidden ~/Library`
-
 
 Finder Quick Look
 -----------------
