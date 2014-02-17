@@ -211,6 +211,14 @@ Flush locked mails: `mailq | grep ^[0-9A-Z] | awk '{print $1}'|sed 's/*//' > mai
 Tuning
 ------
 
+### Memory
+
+Free pagecache, dentries and inodes in cache memory: `sync; echo 3 > /proc/sys/vm/drop_caches`
+
+Free dentries and inodes: `sync; echo 2 > /proc/sys/vm/drop_caches`
+
+Free pagecache only: `sync; echo 1 > /proc/sys/vm/drop_caches`
+
 ### For directories with thousands of files:
 
  - Add option `dir_index` to FS (ext4) with `tune2fs`
