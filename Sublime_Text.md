@@ -44,3 +44,7 @@ Go to left tab: Alt + CMD + ←
 
 Go to last used tab: Ctrl + TAB
 
+Theme
+-----
+
+Use Solarized theme: https://github.com/altercation/solarized

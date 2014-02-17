@@ -25,7 +25,38 @@ Install SSHFS: `brew install sshfs`
 
 Install Tmux: `brew install tmux`
 
-tmux -CC for iTerm2 integration
+iTerm2
+------
+
+Use solarized theme: https://github.com/altercation/solarized
+
+Add an iTerm2 panel which can be called with "ALT+SPACE":
+>Set HotKey Panel by selecting "Preferences" -> "Keys" -> "HotKey" and set iTerm2 to open with the session.
+
+Oh-My-ZSH
+---------
+
+Install ZSH: `brew install zsh`
+
+Install Oh-My-ZSH:
+
+    git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+    cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+    chsh -s /bin/zsh
+
+Install Oh-My-ZSH solarized theme:
+
+    cd .oh-my-zsh/themes
+    mv agnoster.zsh-theme agnoster.zsh-theme.bak
+    wget https://gist.github.com/agnoster/3712874/raw/c3107c06c04fb42b0ca27b0a81b15854819969c6/agnoster.zsh-theme
+
+Edit `.zshrc`: `ZSH_THEME="agnoster"`
+
+Install Powerline fonts: `pip install --user git+git://github.com/Lokaltog/powerline`
+
+Install patched Monaco for Powerline font:
+ - `wget https://gist.github.com/baopham/1838072/raw/2c0e00770826e651d1e355962e751325edb0f1ee/Monaco%20for%20Powerline.otf`
+ - Install it with double-click
 
 Divers
 ------
