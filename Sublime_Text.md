@@ -44,6 +44,12 @@ Go to left tab: Alt + CMD + ←
 
 Go to last used tab: Ctrl + TAB
 
+Replace every occurence of the selection: CMD + d
+
+Move a line: Ctrl + CMD + ↑ ou ↓
+
+Remove end of line: Ctrl + k
+
 Theme
 -----
 

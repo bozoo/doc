@@ -25,6 +25,19 @@ Install SSHFS: `brew install sshfs`
 
 Install Tmux: `brew install tmux`
 
+Qemu
+----
+
+Install prerequisites:
+
+    brew install pkg-config glib
+    brew link glib
+    brew install apple-gcc42
+
+Install Qemu:
+
+    brew install qemu --env=std --use-gcc
+
 iTerm2
 ------
 
