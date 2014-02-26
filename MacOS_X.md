@@ -74,6 +74,10 @@ Install patched Monaco for Powerline font:
 Divers
 ------
 
+Take a screenshot of the screen, and save it as a file on the desktop: `Command-Shift-3`
+
+Take a screenshot of an area and save it as a file on the desktop: `Command-Shift-4`
+
 Disable startup sound: `sudo nvram SystemAudioVolume=%80`
 
 Enable startup sound: `sudo nvram -d SystemAudioVolume`
